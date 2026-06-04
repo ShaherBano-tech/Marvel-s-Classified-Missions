@@ -346,7 +346,8 @@ body {
 .dossier-images img {
     width: 130px;
     height: 165px;
-    object-fit: contain;
+
+    object-fit: cover;
 
     background:
         linear-gradient(
@@ -355,7 +356,23 @@ body {
             #303e5b 100%
         );
 
-    padding: 8px;
+    overflow: hidden;
+}
+
+.ultron-img {
+    object-position: center 15%;
+}
+
+.wanda-img {
+    object-position: center 20%;
+}
+
+.pietro-img {
+    object-position: center 5%;
+}
+
+.pietro-img {
+    grid-column: 1;
 }
 
 .dossier-images img:nth-child(3) {
