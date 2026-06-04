@@ -649,11 +649,36 @@ body {
 .hero-grid {
     position: absolute;
     top: 195px;
-    left: 490px;
+    left: 500px;
+
+    width: 865px;
+    height: 560px;
 
     display: grid;
     grid-template-columns: repeat(4, 185px);
     gap: 38px 28px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding-right: 35px;
+}
+
+.hero-grid::-webkit-scrollbar {
+    width: 14px;
+}
+
+.hero-grid::-webkit-scrollbar-track {
+    background: rgba(55, 0, 40, 0.45);
+}
+
+.hero-grid::-webkit-scrollbar-thumb {
+    background: #9b0000;
+    border-radius: 20px;
+}
+
+.hero-grid::-webkit-scrollbar-thumb:hover {
+    background: #c40000;
 }
 
 .hero-card {
