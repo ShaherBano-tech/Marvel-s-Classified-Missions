@@ -149,3 +149,7 @@ body {
 .button:hover {
     background: #c40000;
 }
+
+.landing-screen {
+    min-height: calc(100vh - 80px);
+}
