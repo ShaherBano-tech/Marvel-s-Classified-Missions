@@ -463,3 +463,94 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
+.analyse-folder {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 360px;
+    min-height: 500px;
+
+    padding: 28px 34px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #a70008 0%,
+            #410003 43%,
+            #2d0002 100%
+        );
+
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.analyse-folder h3 {
+    margin-top: 18px;
+    margin-bottom: 6px;
+
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.analyse-folder h3:first-child {
+    margin-top: 0;
+}
+
+.analyse-options {
+    margin: 12px 0 20px;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.analyse-options button {
+    background: none;
+    border: none;
+
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.analyse-options button:hover {
+    color: #c00000;
+}
+
+.mission-type-options {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 12px;
+}
+
+.mission-type-options button {
+    min-width: 80px;
+}
+
+.progress-bar {
+    align-items: center;
+}
+
+.progress-analyse::before {
+    content: "";
+    position: absolute;
+
+    left: 42px;
+    top: 20px;
+
+    width: 220px;
+    height: 2px;
+
+    background: #a97112;
+
+    z-index: -1;
+}

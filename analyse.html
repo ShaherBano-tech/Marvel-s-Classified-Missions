@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing - Marvel's Classified Missions</title>
+    <title>Analyse - Marvel's Classified Missions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,8 +20,66 @@
         </div>
     </header>
 
-    <main class="landing-screen">
-        
+    <main class="dossier-screen">
+        <a href="dossier.html" class="back-button">&lt; Back</a>
+
+        <section class="progress-bar progress-analyse">
+            <span class="progress-step active"></span>
+            <span class="progress-step active"></span>
+            <span class="progress-step"></span>
+            <span class="progress-step"></span>
+        </section>
+
+        <section class="analyse-folder">
+            <h3>Incident Report</h3>
+
+            <p>
+                Multiple S.H.I.E.L.D. systems have been taken offline following an unknown cyberattack.
+                Satellite footage shows increased robotic activity near Sokovia. Witnesses reported
+                ______ energy surges and extremely ______ movement near the affected area.
+                Possible involvement of ______ has been detected.
+            </p>
+
+            <div class="analyse-options">
+                <button>enhanced speed</button>
+                <button>Ultron</button>
+                <button>unknown</button>
+            </div>
+
+            <h3>Intel</h3>
+            <p>
+                - Wanda Maximoff detected<br>
+                - Energy attacks confirmed<br>
+                - High probability of drone activity
+            </p>
+
+            <h3>Amount</h3>
+            <div class="analyse-options">
+                <button>1-5</button>
+                <button>5-10</button>
+                <button>10-15+</button>
+                <button>Unknown</button>
+            </div>
+
+            <h3>Threat Level</h3>
+            <div class="analyse-options">
+                <button>Low</button>
+                <button>Medium</button>
+                <button>High</button>
+                <button>Critical</button>
+            </div>
+
+            <h3>Mission Type</h3>
+            <div class="analyse-options mission-type-options">
+                <button>Infiltration</button>
+                <button>Elimination</button>
+                <button>Defense</button>
+                <button>Investigation</button>
+                <button>Retrieval</button>
+            </div>
+        </section>
+
+        <a href="samenstellen.html" class="next-button">Next &gt;</a>
     </main>
 </body>
 </html>
