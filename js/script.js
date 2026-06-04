@@ -1,21 +1,28 @@
 const heroCards = document.querySelectorAll(".hero-card");
-const heroModal = document.getElementById("heroModal");
-const modalHeroImage = document.getElementById("modalHeroImage");
-const modalHeroName = document.getElementById("modalHeroName");
-const closeModal = document.getElementById("closeModal");
+const heroPopup = document.getElementById("heroPopup");
+const popupHeroImage = document.getElementById("popupHeroImage");
+const popupHeroName = document.getElementById("popupHeroName");
+const closePopup = document.getElementById("closePopup");
 
 heroCards.forEach((card) => {
-    const button = card.querySelector("button");
+    card.addEventListener("click", () => {
+        const heroName = card.dataset.name;
+        const heroImage = card.dataset.img;
 
-    button.addEventListener("click", () => {
-        modalHeroName.textContent = card.dataset.name;
-        modalHeroImage.src = card.dataset.img;
-        modalHeroImage.alt = card.dataset.name;
+        popupHeroName.textContent = heroName;
+        popupHeroImage.src = heroImage;
+        popupHeroImage.alt = heroName;
 
-        heroModal.classList.add("active");
+        heroPopup.classList.add("active");
     });
 });
 
-closeModal.addEventListener("click", () => {
-    heroModal.classList.remove("active");
+closePopup.addEventListener("click", () => {
+    heroPopup.classList.remove("active");
+});
+
+heroPopup.addEventListener("click", (event) => {
+    if (event.target === heroPopup) {
+        heroPopup.classList.remove("active");
+    }
 });
