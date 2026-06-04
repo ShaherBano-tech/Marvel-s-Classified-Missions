@@ -151,5 +151,111 @@ body {
 }
 
 .landing-screen {
+    position: relative;
     min-height: calc(100vh - 80px);
+}
+
+.info-panel,
+.news-panel,
+.bottom-nav a,
+.dossier-area h2 {
+    background: #1b2940;
+    color: white;
+}
+
+.info-panel {
+    position: absolute;
+    left: 90px;
+    padding: 28px 30px;
+    font-size: 19px;
+}
+
+.agent-info {
+    top: 85px;
+    width: 320px;
+    height: 300px;
+}
+
+.mission-info {
+    top: 420px;
+    width: 250px;
+    height: 300px;
+}
+
+.news-panel {
+    position: absolute;
+    top: 85px;
+    right: 60px;
+    width: 410px;
+    padding: 12px 18px;
+    font-size: 18px;
+}
+
+.dossier-area {
+    position: absolute;
+    right: 10px;
+    bottom: 125px;
+    text-align: center;
+}
+
+.dossier-area h2 {
+    display: inline-block;
+    padding: 10px 30px;
+    margin-left: 300px;
+    margin-bottom: 25px;
+
+    text-transform: uppercase;
+    font-size: 32px;
+    letter-spacing: 1px;
+}
+
+.folder-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 35px;
+}
+
+.folder-button {
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.folder-button img {
+    height: 270px;
+    width: auto;
+    display: block;
+}
+
+.folder-button:hover {
+    transform: translateY(-8px) scale(1.03);
+}
+
+.bottom-nav {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+}
+
+.bottom-nav a {
+    width: 170px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.bottom-nav a:hover {
+    background: #263957;
 }
