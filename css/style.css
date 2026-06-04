@@ -554,3 +554,18 @@ body {
 
     z-index: -1;
 }
+
+.progress-team::before {
+    content: "";
+    position: absolute;
+
+    left: 42px;
+    top: 20px;
+
+    width: 470px;
+    height: 2px;
+
+    background: #a97112;
+
+    z-index: -1;
+}
