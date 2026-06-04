@@ -259,3 +259,190 @@ body {
 .bottom-nav a:hover {
     background: #263957;
 }
+
+.dossier-screen {
+    position: relative;
+    min-height: calc(100vh - 80px);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.back-button,
+.next-button {
+    position: absolute;
+    color: #c00000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 1px;
+}
+
+.back-button {
+    top: 60px;
+    left: 28px;
+}
+
+.next-button {
+    right: 45px;
+    bottom: 45px;
+}
+
+.progress-bar {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 760px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress-step {
+    width: 42px;
+    height: 42px;
+    background: white;
+}
+
+.progress-step.active {
+    background: #a97112;
+}
+
+.dossier-folder {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-58%);
+
+    width: 760px;
+    height: 540px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    background:
+        linear-gradient(
+            180deg,
+            #a70008 0%,
+            #410003 43%,
+            #2d0002 100%
+        );
+
+    border: 1px solid rgba(0, 0, 0, 0.45);
+}
+
+.dossier-images {
+    padding: 42px 38px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: start;
+    gap: 24px 18px;
+
+    border-right: 2px solid rgba(0, 0, 0, 0.35);
+}
+
+.dossier-images img {
+    width: 130px;
+    height: 165px;
+    object-fit: contain;
+
+    background:
+        linear-gradient(
+            180deg,
+            #1b263b 41%,
+            #303e5b 100%
+        );
+
+    padding: 8px;
+}
+
+.dossier-images img:nth-child(3) {
+    grid-column: 1;
+}
+
+.dossier-content {
+    padding: 28px 34px;
+    color: white;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.dossier-content h2,
+.dossier-content h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.dossier-content h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.dossier-content h3 {
+    font-size: 16px;
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+.dossier-intro {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.dossier-intro img {
+    width: 80px;
+    height: 105px;
+    object-fit: contain;
+
+    background:
+        linear-gradient(
+            180deg,
+            #1b263b 41%,
+            #303e5b 100%
+        );
+
+    padding: 6px;
+}
+
+.dossier-intro p {
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.notes-box {
+    position: absolute;
+    top: 150px;
+    right: 85px;
+
+    width: 270px;
+    height: 260px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #a70008 0%,
+            #410003 43%,
+            #2d0002 100%
+        );
+
+    border: 1px solid rgba(0, 0, 0, 0.45);
+}
+
+.notes-box h3 {
+    height: 28px;
+    padding: 6px 10px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.45);
+
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
