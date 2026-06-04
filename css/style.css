@@ -569,3 +569,222 @@ body {
 
     z-index: -1;
 }
+
+.team-sidebar {
+    position: absolute;
+    top: 195px;
+    left: 60px;
+
+    width: 305px;
+}
+
+.filter-button {
+    width: 155px;
+    height: 42px;
+    margin-left: 150px;
+    margin-bottom: 65px;
+
+    background: #1b2940;
+    color: white;
+
+    border: none;
+
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.team-summary {
+    width: 305px;
+    height: 480px;
+
+    padding: 32px 30px;
+
+    background: #1b2940;
+    color: white;
+
+    font-family: 'Open Sans', sans-serif;
+}
+
+.team-summary h2 {
+    margin-bottom: 25px;
+
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.team-summary p {
+    margin-bottom: 40px;
+
+    font-size: 18px;
+}
+
+.team-summary ul {
+    list-style: none;
+    margin-bottom: 80px;
+}
+
+.team-summary li {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+
+    font-size: 18px;
+}
+
+.team-summary li span {
+    font-size: 28px;
+    line-height: 18px;
+}
+
+.team-summary h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-grid {
+    position: absolute;
+    top: 195px;
+    left: 490px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 185px);
+    gap: 38px 28px;
+}
+
+.hero-card {
+    height: 260px;
+    background: #080f20;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.hero-card img {
+    width: 100%;
+    height: 215px;
+    object-fit: cover;
+    object-position: 65% top;
+}
+
+.hero-card button {
+    width: 100%;
+    height: 45px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 18px;
+
+    background: #080f20;
+    color: white;
+    border: none;
+
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+
+.hero-card button span {
+    color: black;
+    font-size: 22px;
+}
+
+.hero-modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 20;
+}
+
+.hero-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-modal-content {
+    position: relative;
+
+    width: 520px;
+    min-height: 650px;
+
+    padding: 35px 40px;
+
+    background: #1b2940;
+    color: white;
+    border-radius: 12px;
+
+    font-family: 'Open Sans', sans-serif;
+}
+
+.hero-modal-content img {
+    width: 240px;
+    height: 260px;
+    object-fit: contain;
+}
+
+.hero-modal-info {
+    position: absolute;
+    top: 45px;
+    right: 40px;
+
+    width: 210px;
+}
+
+.hero-modal-info h2,
+.hero-modal-info p:first-letter,
+.hero-synergy h3,
+.close-modal {
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.hero-modal-info h2 {
+    margin-bottom: 25px;
+    font-size: 34px;
+    text-transform: uppercase;
+}
+
+.hero-modal-info p {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.hero-synergy {
+    margin-top: 35px;
+}
+
+.hero-synergy h3 {
+    margin-bottom: 15px;
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
+.hero-synergy p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.close-modal {
+    position: absolute;
+    right: 35px;
+    bottom: 30px;
+
+    background: none;
+    border: none;
+    color: white;
+
+    font-size: 34px;
+    text-transform: uppercase;
+    cursor: pointer;
+}

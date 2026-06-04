@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+<script src="js/script.js"></script>
 <body>
 
     <header class="topbar">
@@ -33,9 +35,89 @@
             <span class="progress-step"></span>
         </section>
 
-        <!-- Hier komt straks de filter/sidebar -->
+        <section class="team-sidebar">
+    <button class="filter-button">Filter</button>
 
-        <!-- Hier komen straks de hero kaarten -->
+    <div class="team-summary">
+        <h2>Succes rate %</h2>
+        <p>Amount (4/6)...</p>
+
+        <ul>
+            <li>Hero 1 <span>×</span></li>
+            <li>Hero 2 <span>×</span></li>
+            <li>Hero 3 <span>×</span></li>
+            <li>Hero 4 <span>×</span></li>
+        </ul>
+
+        <h3>Total costs:</h3>
+    </div>
+</section>
+
+        <section class="hero-grid">
+    <div class="hero-card" data-name="Iron Man" data-img="Images/Iron-Man.png">
+        <img src="Images/Iron-Man.png" alt="Iron Man">
+        <button>Iron Man <span>▼</span></button>
+    </div>
+
+    <div class="hero-card" data-name="Ms. Marvel" data-img="Images/Ms.Marvel.png">
+        <img src="Images/Ms.Marvel.png" alt="Ms. Marvel">
+        <button>Ms. Marvel <span>▼</span></button>
+    </div>
+
+    <div class="hero-card" data-name="Hawkeye" data-img="Images/Hawkeye.png">
+        <img src="Images/Hawkeye.png" alt="Hawkeye">
+        <button>Hawkeye <span>▼</span></button>
+    </div>
+
+    <div class="hero-card" data-name="Hulk" data-img="Images/Hulk.png">
+        <img src="Images/Hulk.png" alt="Hulk">
+        <button>Hulk <span>▼</span></button>
+    </div>
+
+    <div class="hero-card" data-name="Thor" data-img="Images/Thor.png">
+        <img src="Images/Thor.png" alt="Thor">
+        <button>Thor <span>▼</span></button>
+    </div>
+
+    <div class="hero-card" data-name="Black Widow" data-img="Images/BlackWidow.png">
+        <img src="Images/BlackWidow.png" alt="Black Widow">
+        <button>Black Widow <span>▼</span></button>
+    </div>
+
+    <div class="hero-card" data-name="Spider-Man" data-img="Images/Spiderman.png">
+        <img src="Images/Spiderman.png" alt="Spider-Man">
+        <button>Spider-Man <span>▼</span></button>
+    </div>
+
+    <div class="hero-card" data-name="Captain America" data-img="Images/CaptainAmerica.png">
+        <img src="Images/CaptainAmerica.png" alt="Captain America">
+        <button>Captain America <span>▼</span></button>
+    </div>
+</section>
+
+<section class="hero-modal" id="heroModal">
+    <div class="hero-modal-content">
+        <img id="modalHeroImage" src="" alt="Hero">
+        <div class="hero-modal-info">
+            <h2 id="modalHeroName"></h2>
+            <p>Role:</p>
+            <p>Info wordt later ingevuld</p>
+
+            <p>Skills:</p>
+            <p>Info wordt later ingevuld</p>
+
+            <p>Price:</p>
+            <p>Info wordt later ingevuld</p>
+        </div>
+
+        <div class="hero-synergy">
+            <h3>Team Synergy</h3>
+            <p>Info wordt later ingevuld.</p>
+        </div>
+
+        <button class="close-modal" id="closeModal">Close</button>
+    </div>
+</section>
 
         <a href="bevestiging.html" class="next-button">Next &gt;</a>
 
