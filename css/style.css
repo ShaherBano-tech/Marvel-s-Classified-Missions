@@ -18,7 +18,7 @@ body {
     overflow: hidden;
 
     height: 80px;
-    padding: 0 40px;
+    padding: 0 30px;
 
     display: flex;
     align-items: center;
@@ -59,16 +59,39 @@ body {
     pointer-events: none;
 }
 
-.topbar h1,
-.topbar p {
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
     position: relative;
     z-index: 1;
+}
+
+.header-left {
+    gap: 15px;
+}
+
+.header-right {
+    gap: 8px;
+}
+
+.shield-logo {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+}
+
+.agent-logo {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    margin-left: -5px;
 }
 
 .topbar h1 {
     font-size: 32px;
     letter-spacing: 6px;
-    color: white;
+    color: #51525B;
 }
 
 .topbar p {
@@ -76,11 +99,11 @@ body {
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: white;
+    color: #51525B;
 }
 
 .start-screen {
-    min-height: calc(100vh - 90px);
+    min-height: calc(100vh - 80px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,15 +113,27 @@ body {
     text-align: center;
 }
 
-.agent-icon {
-    font-size: 70px;
-    margin-bottom: 20px;
+.login-icon {
+    height: 250px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 18px;
+    opacity: 0.9;
+
+    filter: brightness(0) saturate(100%)
+            invert(54%)
+            sepia(4%)
+            saturate(233%)
+            hue-rotate(191deg)
+            brightness(92%)
+            contrast(88%);
 }
 
 .login-card h2 {
     margin-bottom: 25px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    font-size: 32px;
 }
 
 .button {
