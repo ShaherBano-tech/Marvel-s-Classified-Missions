@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing - Marvel's Classified Missions</title>
+    <title>Bevestiging Missie - Marvel's Classified Missions</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
     <header class="topbar">
         <div class="header-left">
             <img src="Images/Shield.png" alt="Shield Logo" class="shield-logo">
@@ -19,8 +22,92 @@
         </div>
     </header>
 
-    <main class="landing-screen">
-        
+    <main class="dossier-screen">
+
+        <a href="samenstellen.html" class="back-button">&lt; Back</a>
+
+        <section class="progress-bar progress-confirm">
+            <span class="progress-step active"></span>
+            <span class="progress-step active"></span>
+            <span class="progress-step active"></span>
+            <span class="progress-step active"></span>
+        </section>
+
+        <section class="confirm-dossier">
+            <div class="confirm-dossier-top">
+                <img src="Images/mapb.png" alt="Blue Marvel dossier map">
+                <div>
+                    <h2>Ultron (AI)</h2>
+                    <p>Threat Level: Extreme</p>
+                    <p>Location: Sokovia</p>
+                    <p>Status: Active</p>
+                </div>
+            </div>
+
+            <h3>Situation Report</h3>
+            <p>
+                An advanced artificial intelligence has gained access to multiple worldwide networks
+                and military systems. Ultron is preparing a large-scale attack using stolen technology
+                and autonomous drones. Recent signals indicate increased activity in and around Sokovia.
+            </p>
+
+            <h3>Additional Information</h3>
+            <p>
+                Known allies:<br>
+                - Wanda Maximoff (Telekinesis)<br>
+                - Pietro Maximoff (Enhanced Speed)
+            </p>
+
+            <p>
+                Possible threats:<br>
+                - Ultron Sentries<br>
+                - Hacked S.H.I.E.L.D. systems<br>
+                - Energy attacks
+            </p>
+
+            <p>
+                Recommended approach:<br>
+                A balanced team with both technological and offensive capabilities is advised.
+            </p>
+        </section>
+
+        <section class="chosen-team">
+            <h2>Chosen hero's</h2>
+
+            <div class="chosen-row">
+                <div class="hero-card small-card">
+                    <span class="remove-hero">×</span>
+                    <img src="Images/Iron-Man.png" alt="Iron Man">
+                    <button>Iron Man <span>▼</span></button>
+                </div>
+
+                <div class="hero-card small-card">
+                    <span class="remove-hero">×</span>
+                    <img src="Images/CaptainAmerica.png" alt="Captain America">
+                    <button>Captain America <span>▼</span></button>
+                </div>
+
+                <div class="hero-card small-card">
+                    <span class="remove-hero">×</span>
+                    <img src="Images/BlackWidow.png" alt="Black Widow">
+                    <button>Black Widow <span>▼</span></button>
+                </div>
+            </div>
+
+            <div class="confirm-summary">
+                <div>
+                    <h3>Succes rate</h3>
+                </div>
+
+                <div>
+                    <h3>Total costs:</h3>
+                </div>
+            </div>
+        </section>
+
+        <a href="briefing.html" class="next-button">Next &gt;</a>
+
     </main>
+
 </body>
 </html>

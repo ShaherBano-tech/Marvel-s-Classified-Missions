@@ -922,4 +922,132 @@ body {
 
     font-size: 42px;
     cursor: pointer;
+} 
+
+.progress-confirm::before {
+    content: "";
+    position: absolute;
+    left: 42px;
+    top: 20px;
+    width: 715px;
+    height: 2px;
+    background: #a97112;
+    z-index: -1;
 }
+
+.confirm-dossier {
+    position: absolute;
+    top: 150px;
+    left: 95px;
+    width: 440px;
+    height: 640px;
+    padding: 32px 45px;
+
+    background: linear-gradient(
+        180deg,
+        #a70008 0%,
+        #410003 43%,
+        #2d0002 100%
+    );
+
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.confirm-dossier h2,
+.confirm-dossier h3,
+.chosen-team h2,
+.confirm-summary h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.confirm-dossier-top {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.confirm-dossier-top img {
+    width: 110px;
+    height: auto;
+
+    transform: scale(1.5) translateX(-12px);
+    transform-origin: left center;
+}
+
+.confirm-dossier h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.confirm-dossier-top p {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.confirm-dossier h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.chosen-team {
+    position: absolute;
+    top: 215px;
+    left: 590px;
+    color: white;
+}
+
+.chosen-team h2 {
+    margin-bottom: 25px;
+    font-size: 34px;
+}
+
+.chosen-row {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.small-card {
+    position: relative;
+    width: 195px;
+    height: 275px;
+}
+
+.small-card img {
+    height: 225px;
+}
+
+.remove-hero {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    z-index: 2;
+    color: black;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.confirm-summary {
+    display: flex;
+    gap: 50px;
+    margin-top: 40px;
+}
+
+.confirm-summary div {
+    width: 320px;
+    height: 120px;
+    padding: 18px 22px;
+    background: #1b2940;
+}
+
+.confirm-summary h3 {
+    font-size: 34px;
+} 
