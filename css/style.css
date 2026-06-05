@@ -1213,6 +1213,397 @@ img {
     font-size: 22px;
 }
 
+.camera-frame {
+    position: relative;
+    overflow: hidden;
+
+    --face-x: 50%;
+    --face-y: 50%;
+    --face-w: 46%;
+    --face-h: 56%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #10192b 0%,
+            #26344f 100%
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.camera-frame video,
+.camera-frame .camera-fallback {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.camera-frame video {
+    transform: scaleX(-1);
+}
+
+.camera-frame .camera-fallback {
+    padding: 14px;
+    object-fit: contain;
+}
+
+.camera-frame.camera-active .camera-fallback {
+    display: none;
+}
+
+.mini-camera-frame {
+    width: 146px;
+    height: 146px;
+}
+
+.briefing-camera-frame {
+    position: relative;
+    overflow: hidden;
+    background: #05070c;
+}
+
+.briefing-filter-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.briefing-filter-layer.is-hidden {
+    display: none;
+}
+
+.tracked-filter {
+    position: absolute;
+    left: var(--face-x);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.65));
+}
+
+.tracked-filter.glasses {
+    top: calc(var(--face-y) - (var(--face-h) * 0.16));
+    width: calc(var(--face-w) * 0.88);
+    height: calc(var(--face-h) * 0.17);
+}
+
+.tracked-filter.glasses::before,
+.tracked-filter.glasses::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+
+    width: 38%;
+    height: 100%;
+
+    border: 3px solid #070707;
+    border-radius: 46% 46% 56% 56%;
+    background:
+        radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.38) 0 8%, transparent 9%),
+        linear-gradient(145deg, rgba(64, 151, 235, 0.42), rgba(8, 20, 38, 0.85));
+    box-shadow: inset 0 -5px 8px rgba(0, 0, 0, 0.42);
+}
+
+.tracked-filter.glasses::before {
+    left: 2%;
+    transform: translateY(-50%) rotate(3deg);
+}
+
+.tracked-filter.glasses::after {
+    right: 2%;
+    transform: translateY(-50%) rotate(-3deg);
+}
+
+.tracked-filter.glasses {
+    background:
+        linear-gradient(90deg, transparent 40%, #070707 40% 60%, transparent 60%),
+        linear-gradient(90deg, #070707 0 10%, transparent 10% 90%, #070707 90% 100%);
+    border-radius: 999px;
+}
+
+.tracked-filter.glasses2::before,
+.tracked-filter.glasses2::after {
+    border-radius: 14% 14% 42% 42%;
+    background:
+        radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.42) 0 7%, transparent 8%),
+        linear-gradient(145deg, rgba(20, 20, 20, 0.88), rgba(0, 0, 0, 0.98));
+}
+
+.tracked-filter.hat {
+    top: calc(var(--face-y) - (var(--face-h) * 0.58));
+    width: calc(var(--face-w) * 1.02);
+    height: calc(var(--face-h) * 0.42);
+}
+
+.tracked-filter.hat1::before {
+    content: "";
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    bottom: 20%;
+    height: 18%;
+    background: #202020;
+    border-radius: 999px;
+}
+
+.tracked-filter.hat1::after {
+    content: "";
+    position: absolute;
+    left: 29%;
+    top: 6%;
+    width: 42%;
+    height: 58%;
+    background: linear-gradient(180deg, #444 0%, #111 70%);
+    border-radius: 10% 10% 18% 18%;
+    transform: rotate(-4deg);
+}
+
+.tracked-filter.hat2::before {
+    content: "";
+    position: absolute;
+    left: 13%;
+    right: 13%;
+    bottom: 20%;
+    height: 18%;
+    background: #b01818;
+    border-radius: 999px;
+}
+
+.tracked-filter.hat2::after {
+    content: "";
+    position: absolute;
+    left: 24%;
+    top: 9%;
+    width: 52%;
+    height: 50%;
+    background:
+        radial-gradient(circle at 54% 40%, #fff 0 8%, transparent 9%),
+        linear-gradient(180deg, #ed1c24 0%, #a60008 100%);
+    border-radius: 45% 45% 16% 16%;
+}
+
+.disguise {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.45));
+    transition:
+        left 0.08s linear,
+        top 0.08s linear,
+        width 0.08s linear,
+        height 0.08s linear;
+}
+
+.disguise-glasses {
+    left: var(--face-x);
+    top: calc(var(--face-y) - (var(--face-h) * 0.17));
+    width: calc(var(--face-w) * 0.9);
+    height: calc(var(--face-h) * 0.18);
+    transform: translate(-50%, -50%);
+    background:
+        linear-gradient(
+            90deg,
+            transparent 39%,
+            #050505 39%,
+            #050505 61%,
+            transparent 61%
+        ),
+        linear-gradient(
+            90deg,
+            #050505 0 9%,
+            transparent 9% 91%,
+            #050505 91% 100%
+        );
+    border-radius: 999px;
+}
+
+.disguise-glasses::before,
+.disguise-glasses::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+
+    width: 38%;
+    height: 108%;
+
+    border: clamp(3px, 0.65vw, 7px) solid #050505;
+    border-radius: 48% 48% 58% 58%;
+    background:
+        radial-gradient(
+            circle at 30% 24%,
+            rgba(255, 255, 255, 0.42) 0 8%,
+            transparent 9%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(92, 190, 255, 0.42) 0%,
+            rgba(15, 32, 55, 0.56) 58%,
+            rgba(0, 0, 0, 0.72) 100%
+        );
+    box-shadow:
+        inset 0 0 10px rgba(255, 255, 255, 0.16),
+        inset 0 -8px 12px rgba(0, 0, 0, 0.32);
+}
+
+.disguise-glasses::before {
+    left: 0;
+    transform: translateY(-50%) rotate(3deg);
+}
+
+.disguise-glasses::after {
+    right: 0;
+    transform: translateY(-50%) rotate(-3deg);
+}
+
+.disguise-moustache {
+    left: var(--face-x);
+    top: calc(var(--face-y) + (var(--face-h) * 0.16));
+    width: calc(var(--face-w) * 0.7);
+    height: calc(var(--face-h) * 0.17);
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 7px 7px rgba(0, 0, 0, 0.55));
+}
+
+.disguise-moustache::before,
+.disguise-moustache::after {
+    content: "";
+    position: absolute;
+    top: 12%;
+
+    width: 58%;
+    height: 82%;
+
+    background:
+        radial-gradient(
+            circle at 78% 38%,
+            rgba(255, 255, 255, 0.16) 0 5%,
+            transparent 6%
+        ),
+        radial-gradient(
+            ellipse at 74% 35%,
+            #1c1010 0 26%,
+            #060404 58%,
+            #000 100%
+        );
+    border-radius: 85% 22% 80% 36%;
+    box-shadow:
+        inset -8px -5px 8px rgba(0, 0, 0, 0.58),
+        inset 7px 5px 7px rgba(255, 255, 255, 0.05);
+}
+
+.disguise-moustache::before {
+    left: 0;
+    transform: rotate(12deg) skewX(-10deg);
+    transform-origin: right center;
+}
+
+.disguise-moustache::after {
+    right: 0;
+    transform: rotate(-12deg) skewX(10deg) scaleX(-1);
+    transform-origin: left center;
+}
+
+.ar-stage {
+    position: absolute;
+    top: 88px;
+    left: 55px;
+    right: 55px;
+    bottom: 62px;
+
+    display: block;
+}
+
+.mindar-stage {
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.mindar-stage a-scene {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.mindar-stage .a-canvas,
+.mindar-stage canvas,
+.mindar-stage video {
+    position: absolute !important;
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover;
+}
+
+.mindar-stage canvas,
+.mindar-stage video {
+    border: none;
+}
+
+.accessory-panel {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 5;
+
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    max-width: calc(100% - 28px);
+}
+
+.accessory-button {
+    width: 58px;
+    height: 58px;
+    padding: 3px;
+
+    background: rgba(8, 15, 32, 0.82);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.accessory-button.selected {
+    border-color: #a97112;
+    box-shadow: 0 0 0 2px rgba(169, 113, 18, 0.35);
+}
+
+.accessory-button img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.ar-camera-frame {
+    width: 100%;
+    height: 100%;
+}
+
+.ar-controls {
+    right: 0;
+    bottom: 0;
+}
+
+.join-meeting {
+    color: #c00000;
+}
+
+.ar-call {
+    overflow: hidden;
+    background: transparent;
+    box-shadow: none;
+}
+
 .call-controls {
     position: absolute;
     right: 0;
@@ -1234,6 +1625,11 @@ img {
 
     cursor: pointer;
     padding: 0;
+}
+
+.call-controls button.active {
+    background: #243a63;
+    box-shadow: inset 0 0 0 2px rgba(169, 113, 18, 0.75);
 }
 
 .call-controls .hangup {
@@ -1556,6 +1952,16 @@ img {
         height: auto;
         grid-template-rows: none;
     }
+
+    .ar-call {
+        min-height: 560px;
+    }
+
+    .ar-stage {
+        position: static;
+        min-height: 430px;
+        margin-top: 16px;
+    }
 }
 
 @media (max-width: 760px) {
@@ -1850,6 +2256,30 @@ img {
     .call-controls .hangup img {
         width: 38px;
         height: 38px;
+    }
+
+    .ar-call {
+        min-height: 0;
+    }
+
+    .ar-stage {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        gap: 14px;
+    }
+
+    .mindar-stage {
+        aspect-ratio: 4 / 5;
+    }
+
+    .accessory-button {
+        width: 48px;
+        height: 48px;
+    }
+
+    .ar-camera-frame {
+        aspect-ratio: 4 / 5;
+        height: auto;
     }
 
     .result-box {

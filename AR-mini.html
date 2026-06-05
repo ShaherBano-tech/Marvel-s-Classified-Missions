@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Disguise Camera</title>
+
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body,
+        .mini-ar-stage {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background: #05070c;
+        }
+
+        a-scene,
+        .a-canvas,
+        canvas,
+        video {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+        }
+
+        .a-enter-vr,
+        .a-enter-ar {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="mini-ar-stage">
+        <a-scene mindar-face embedded
+                 color-space="sRGB"
+                 renderer="colorManagement: true; physicallyCorrectLights: true"
+                 vr-mode-ui="enabled: false"
+                 device-orientation-permission-ui="enabled: false">
+
+            <a-assets>
+                <a-asset-item id="miniHeadModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
+                <a-asset-item id="miniGlassesModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/glasses/scene.gltf"></a-asset-item>
+                <a-asset-item id="miniGlassesModel2" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/glasses2/scene.gltf"></a-asset-item>
+                <a-asset-item id="miniHatModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/hat/scene.gltf"></a-asset-item>
+                <a-asset-item id="miniHatModel2" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/hat2/scene.gltf"></a-asset-item>
+            </a-assets>
+
+            <a-camera active="false" position="0 0 0"></a-camera>
+
+            <a-entity mindar-face-target="anchorIndex: 168">
+                <a-gltf-model mindar-face-occluder position="0 -0.3 0.15" rotation="0 0 0" scale="0.065 0.065 0.065" src="#miniHeadModel"></a-gltf-model>
+            </a-entity>
+
+            <a-entity mindar-face-target="anchorIndex: 168">
+                <a-gltf-model class="mini-accessory glasses1-entity" visible="false" rotation="0 0 0" position="0 0 0" scale="0.01 0.01 0.01" src="#miniGlassesModel"></a-gltf-model>
+            </a-entity>
+
+            <a-entity mindar-face-target="anchorIndex: 168">
+                <a-gltf-model class="mini-accessory glasses2-entity" visible="false" rotation="0 -90 0" position="0 -0.3 0" scale="0.6 0.6 0.6" src="#miniGlassesModel2"></a-gltf-model>
+            </a-entity>
+
+            <a-entity mindar-face-target="anchorIndex: 10">
+                <a-gltf-model class="mini-accessory hat1-entity" visible="false" rotation="0 0 0" position="0 1.0 -0.5" scale="0.35 0.35 0.35" src="#miniHatModel"></a-gltf-model>
+            </a-entity>
+
+            <a-entity mindar-face-target="anchorIndex: 10">
+                <a-gltf-model class="mini-accessory hat2-entity" visible="false" rotation="0 0 0" position="0 -0.2 -0.5" scale="0.008 0.008 0.008" src="#miniHatModel2"></a-gltf-model>
+            </a-entity>
+        </a-scene>
+    </div>
+
+    <script>
+        function getStoredAccessories() {
+            try {
+                const stored = JSON.parse(localStorage.getItem("shieldAccessories") || "[]");
+                return Array.isArray(stored) && stored.length > 0 ? stored : ["glasses1"];
+            } catch (error) {
+                return ["glasses1"];
+            }
+        }
+
+        function setMiniFilters(enabled) {
+            const selected = getStoredAccessories();
+            const accessories = ["glasses1", "glasses2", "hat1", "hat2"];
+
+            accessories.forEach((accessory) => {
+                document.querySelectorAll(`.mini-accessory.${accessory}-entity`).forEach((entity) => {
+                    entity.setAttribute("visible", enabled && selected.includes(accessory));
+                });
+            });
+        }
+
+        window.addEventListener("message", (event) => {
+            if (event.data?.type === "setMiniFilters") {
+                setMiniFilters(event.data.enabled);
+            }
+        });
+
+        window.addEventListener("DOMContentLoaded", () => {
+            setMiniFilters(localStorage.getItem("shieldFiltersEnabled") !== "false");
+        });
+    </script>
+</body>
+</html>

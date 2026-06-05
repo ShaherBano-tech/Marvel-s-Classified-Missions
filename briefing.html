@@ -22,8 +22,7 @@
         </div>
     </header>
 
-    <main class="briefing-screen">
-        <a href="bevestiging.html" class="back-button">&lt; Back</a>
+    <main class="briefing-screen briefing-live-screen">
 
         <section class="briefing-call">
             <h2>Classified - Live Briefing</h2>
@@ -51,32 +50,35 @@
                 <div><img src="Images/logo-nick.png" alt="S.H.I.E.L.D."></div>
 
                 <div class="you-box">
-                <p>You</p>
-                <img src="Images/you.png" alt="You">
+                    <p>You</p>
+                    <div class="camera-frame mini-camera-frame briefing-camera-frame">
+                        <video id="briefingVideo" autoplay muted playsinline></video>
+                        <img src="Images/you.png" alt="You" class="camera-fallback" id="briefingFallback">
+                        <div class="briefing-filter-layer" id="briefingFilterLayer" aria-hidden="true"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="call-controls">
-    <button>
-        <img src="Images/briefing1.png" alt="Briefing">
+    <button type="button" class="filter-toggle active" id="filterToggle">
+        <img src="Images/briefing1.png" alt="Toggle filters">
     </button>
 
-    <button>
+    <button type="button">
         <img src="Images/cam.png" alt="Camera">
     </button>
 
-    <button>
+    <button type="button">
         <img src="Images/mic.png" alt="Microphone">
     </button>
 
-    <button class="hangup">
+    <button type="button" class="hangup" id="hangupCall" data-next-page="resultaat.html">
         <img src="Images/ophangen.png" alt="Hang up">
     </button>
 </div>
         </section>
-
-        <a href="resultaat.html" class="next-button">Next &gt;</a>
     </main>
 
+    <script src="js/script.js"></script>
 </body>
 </html>

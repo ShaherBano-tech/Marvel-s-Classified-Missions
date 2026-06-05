@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disguise Check - Marvel's Classified Missions</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="header-left">
+            <img src="Images/Shield.png" alt="Shield Logo" class="shield-logo">
+            <h1>S.H.I.E.L.D.</h1>
+        </div>
+
+        <div class="header-right">
+            <p>Agent Shadow</p>
+            <img src="Images/agent.png" alt="Agent Logo" class="agent-logo">
+        </div>
+    </header>
+
+    <main class="briefing-screen ar-screen">
+        <a href="bevestiging.html" class="back-button">&lt; Back</a>
+
+        <section class="briefing-call ar-call">
+            <h2>Classified - Disguise Check</h2>
+
+            <div class="ar-stage mindar-stage">
+                <div class="accessory-panel" aria-label="Disguise options">
+                    <button type="button" class="accessory-button selected" id="glasses1" data-accessory="glasses1">
+                        <img src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/glasses/thumbnail.png" alt="Glasses 1">
+                    </button>
+
+                    <button type="button" class="accessory-button" id="glasses2" data-accessory="glasses2">
+                        <img src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/glasses2/thumbnail.png" alt="Glasses 2">
+                    </button>
+
+                    <button type="button" class="accessory-button" id="hat1" data-accessory="hat1">
+                        <img src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/hat/thumbnail.png" alt="Hat 1">
+                    </button>
+
+                    <button type="button" class="accessory-button" id="hat2" data-accessory="hat2">
+                        <img src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/hat2/thumbnail.png" alt="Hat 2">
+                    </button>
+                </div>
+
+                <a-scene mindar-face embedded
+                         color-space="sRGB"
+                         renderer="colorManagement: true, physicallyCorrectLights"
+                         vr-mode-ui="enabled: false"
+                         device-orientation-permission-ui="enabled: false">
+
+                    <a-assets>
+                        <a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
+                        <a-asset-item id="glassesModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/glasses/scene.gltf"></a-asset-item>
+                        <a-asset-item id="glassesModel2" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/glasses2/scene.gltf"></a-asset-item>
+                        <a-asset-item id="hatModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/hat/scene.gltf"></a-asset-item>
+                        <a-asset-item id="hatModel2" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/hat2/scene.gltf"></a-asset-item>
+                    </a-assets>
+
+                    <a-camera active="false" position="0 0 0"></a-camera>
+
+                    <a-entity mindar-face-target="anchorIndex: 168">
+                        <a-gltf-model mindar-face-occluder
+                                      position="0 -0.3 0.15"
+                                      rotation="0 0 0"
+                                      scale="0.065 0.065 0.065"
+                                      src="#headModel"></a-gltf-model>
+                    </a-entity>
+
+                    <a-entity mindar-face-target="anchorIndex: 168">
+                        <a-gltf-model class="glasses1-entity"
+                                      visible="true"
+                                      rotation="0 0 0"
+                                      position="0 0 0"
+                                      scale="0.01 0.01 0.01"
+                                      src="#glassesModel"></a-gltf-model>
+                    </a-entity>
+
+                    <a-entity mindar-face-target="anchorIndex: 168">
+                        <a-gltf-model class="glasses2-entity"
+                                      visible="false"
+                                      rotation="0 -90 0"
+                                      position="0 -0.3 0"
+                                      scale="0.6 0.6 0.6"
+                                      src="#glassesModel2"></a-gltf-model>
+                    </a-entity>
+
+                    <a-entity mindar-face-target="anchorIndex: 10">
+                        <a-gltf-model class="hat1-entity"
+                                      visible="false"
+                                      rotation="0 0 0"
+                                      position="0 1.0 -0.5"
+                                      scale="0.35 0.35 0.35"
+                                      src="#hatModel"></a-gltf-model>
+                    </a-entity>
+
+                    <a-entity mindar-face-target="anchorIndex: 10">
+                        <a-gltf-model class="hat2-entity"
+                                      visible="false"
+                                      rotation="0 0 0"
+                                      position="0 -0.2 -0.5"
+                                      scale="0.008 0.008 0.008"
+                                      src="#hatModel2"></a-gltf-model>
+                    </a-entity>
+                </a-scene>
+            </div>
+        </section>
+
+        <a href="briefing.html" class="next-button join-meeting" id="joinMeeting">Join Meeting &gt;</a>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
