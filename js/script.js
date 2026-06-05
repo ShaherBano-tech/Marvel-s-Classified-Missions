@@ -589,6 +589,32 @@ confirmTeamPopup?.addEventListener("click", (event) => {
 
 renderConfirmStep();
 
+const resultMissionOutcome = document.getElementById("resultMissionOutcome");
+const resultAgentEvaluation = document.getElementById("resultAgentEvaluation");
+const resultMissionStatus = document.getElementById("resultMissionStatus");
+const resultTeam = document.getElementById("resultTeam");
+const resultSuccessRate = document.getElementById("resultSuccessRate");
+const resultMissionCosts = document.getElementById("resultMissionCosts");
+
+function renderResultStep() {
+    if (!resultMissionOutcome || !resultAgentEvaluation || !resultMissionStatus || !resultTeam || !resultSuccessRate || !resultMissionCosts) {
+        return;
+    }
+
+    const storedHeroes = getStoredSelectedHeroes();
+    const stats = getTeamStatsFor(storedHeroes);
+    const isSuccess = stats.success > 80;
+
+    resultMissionOutcome.textContent = isSuccess ? "Success." : "Failure.";
+    resultAgentEvaluation.textContent = isSuccess ? "Promoted to Level 2 Agent." : "Demoted to Level 1 Agent.";
+    resultMissionStatus.textContent = isSuccess ? "Neutralized" : "Failed";
+    resultTeam.innerHTML = storedHeroes.length > 0 ? storedHeroes.join("<br>") : "No heroes selected";
+    resultSuccessRate.textContent = `${stats.success}%`;
+    resultMissionCosts.textContent = formatPrice(stats.totalCost);
+}
+
+renderResultStep();
+
 const cameraConstraints = {
     video: {
         facingMode: "user"
