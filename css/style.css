@@ -1245,3 +1245,115 @@ body {
     width: 50px;
     height: 50px;
 }
+
+.result-screen {
+    position: relative;
+    min-height: calc(100vh - 80px);
+    color: white;
+}
+
+.result-box,
+.mission-report {
+    background: #1b2940;
+    color: white;
+}
+
+.result-left {
+    position: absolute;
+    top: 160px;
+    left: 95px;
+}
+
+.result-box {
+    width: 345px;
+    padding: 12px 8px;
+    margin-bottom: 30px;
+
+    display: flex;
+    gap: 20px;
+
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+}
+
+.result-box h2,
+.result-box p {
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+.evaluation-box {
+    min-height: 88px;
+}
+
+.evaluation-box p {
+    width: 180px;
+    line-height: 1.25;
+}
+
+.impact-box {
+    position: absolute;
+    top: 340px;
+    left: 0;
+
+    width: 345px;
+    min-height: 200px;
+
+    display: block;
+    padding: 18px 8px;
+}
+
+.impact-box h2 {
+    margin-bottom: 25px;
+}
+
+.impact-box p {
+    margin-left: 20px;
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+.mission-report {
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    transform: translateX(-30%);
+
+    width: 440px;
+    min-height: 640px;
+
+    padding: 45px 50px;
+
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mission-report h2 {
+    margin-bottom: 35px;
+    font-size: 24px;
+}
+
+.mission-report h3 {
+    margin-top: 24px;
+    font-size: 16px;
+}
+
+.mission-report p {
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.home-button {
+    position: absolute;
+    right: 45px;
+    bottom: 45px;
+
+    color: #c00000;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 1px;
+}
