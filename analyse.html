@@ -36,14 +36,15 @@
             <p>
                 Multiple S.H.I.E.L.D. systems have been taken offline following an unknown cyberattack.
                 Satellite footage shows increased robotic activity near Sokovia. Witnesses reported
-                ______ energy surges and extremely ______ movement near the affected area.
-                Possible involvement of ______ has been detected.
+                <span class="report-dropzone" data-answer="unknown" aria-label="Drop answer for energy surges"></span> energy surges and extremely
+                <span class="report-dropzone" data-answer="enhanced speed" aria-label="Drop answer for movement"></span> movement near the affected area.
+                Possible involvement of <span class="report-dropzone" data-answer="Ultron" aria-label="Drop answer for involvement"></span> has been detected.
             </p>
 
-            <div class="analyse-options">
-                <button>enhanced speed</button>
-                <button>Ultron</button>
-                <button>unknown</button>
+            <div class="analyse-options report-answers" id="reportAnswers">
+                <button type="button" draggable="true" data-report-answer="enhanced speed">enhanced speed</button>
+                <button type="button" draggable="true" data-report-answer="Ultron">Ultron</button>
+                <button type="button" draggable="true" data-report-answer="unknown">unknown</button>
             </div>
 
             <h3>Intel</h3>
@@ -54,32 +55,34 @@
             </p>
 
             <h3>Amount</h3>
-            <div class="analyse-options">
-                <button>1-5</button>
-                <button>5-10</button>
-                <button>10-15+</button>
-                <button>Unknown</button>
+            <div class="analyse-options choice-options" data-analysis-group="amount">
+                <button type="button">1-5</button>
+                <button type="button">5-10</button>
+                <button type="button">10-15+</button>
+                <button type="button">Unknown</button>
             </div>
 
             <h3>Threat Level</h3>
-            <div class="analyse-options">
-                <button>Low</button>
-                <button>Medium</button>
-                <button>High</button>
-                <button>Critical</button>
+            <div class="analyse-options choice-options" data-analysis-group="threat">
+                <button type="button">Low</button>
+                <button type="button">Medium</button>
+                <button type="button">High</button>
+                <button type="button">Critical</button>
             </div>
 
             <h3>Mission Type</h3>
-            <div class="analyse-options mission-type-options">
-                <button>Infiltration</button>
-                <button>Elimination</button>
-                <button>Defense</button>
-                <button>Investigation</button>
-                <button>Retrieval</button>
+            <div class="analyse-options mission-type-options choice-options" data-analysis-group="mission">
+                <button type="button">Infiltration</button>
+                <button type="button">Elimination</button>
+                <button type="button">Defense</button>
+                <button type="button">Investigation</button>
+                <button type="button">Retrieval</button>
             </div>
         </section>
 
-        <a href="samenstellen.html" class="next-button">Next &gt;</a>
+        <a href="samenstellen.html" class="next-button disabled" id="analysisNext" aria-disabled="true">Next &gt;</a>
     </main>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

@@ -14,6 +14,8 @@ const totalCosts = document.getElementById("totalCosts");
 
 const maxTeamSize = 6;
 const selectedHeroes = [];
+const selectedHeroesStorageKey = "shieldSelectedHeroes";
+const analysisStorageKey = "shieldAnalysisState";
 
 const heroDetails = {
     "Iron Man": {
@@ -141,6 +143,40 @@ function renderSelectedTeam() {
         .join("");
 }
 
+function saveSelectedHeroes() {
+    if (!selectedHeroesList) {
+        return;
+    }
+
+    localStorage.setItem(selectedHeroesStorageKey, JSON.stringify(selectedHeroes));
+}
+
+function restoreSelectedHeroes() {
+    if (!selectedHeroesList) {
+        return;
+    }
+
+    try {
+        const storedHeroes = JSON.parse(localStorage.getItem(selectedHeroesStorageKey) || "[]");
+
+        if (!Array.isArray(storedHeroes)) {
+            return;
+        }
+
+        storedHeroes
+            .filter((heroName) => heroDetails[heroName])
+            .slice(0, maxTeamSize)
+            .forEach((heroName) => {
+                if (!selectedHeroes.includes(heroName)) {
+                    selectedHeroes.push(heroName);
+                    setCardSelected(heroName, true);
+                }
+            });
+    } catch (error) {
+        localStorage.removeItem(selectedHeroesStorageKey);
+    }
+}
+
 function setCardSelected(heroName, isSelected) {
     const card = Array.from(heroCards).find((heroCard) => heroCard.dataset.name === heroName);
 
@@ -153,6 +189,7 @@ function toggleHeroSelection(heroName) {
     if (existingIndex >= 0) {
         selectedHeroes.splice(existingIndex, 1);
         setCardSelected(heroName, false);
+        saveSelectedHeroes();
         renderSelectedTeam();
         return;
     }
@@ -163,6 +200,7 @@ function toggleHeroSelection(heroName) {
 
     selectedHeroes.push(heroName);
     setCardSelected(heroName, true);
+    saveSelectedHeroes();
     renderSelectedTeam();
 }
 
@@ -217,7 +255,189 @@ selectedHeroesList?.addEventListener("click", (event) => {
     }
 });
 
+restoreSelectedHeroes();
 renderSelectedTeam();
+
+const analysisNext = document.getElementById("analysisNext");
+const reportDropzones = document.querySelectorAll(".report-dropzone");
+const reportAnswerButtons = document.querySelectorAll("[data-report-answer]");
+const analysisChoiceGroups = document.querySelectorAll("[data-analysis-group]");
+let selectedReportAnswer = "";
+
+function getAnalysisState() {
+    return {
+        reportAnswers: Array.from(reportDropzones).map((dropzone) => ({
+            answer: dropzone.dataset.answer,
+            currentAnswer: dropzone.dataset.currentAnswer || ""
+        })),
+        choices: Object.fromEntries(
+            Array.from(analysisChoiceGroups).map((group) => [
+                group.dataset.analysisGroup,
+                group.querySelector(".selected")?.textContent.trim() || ""
+            ])
+        )
+    };
+}
+
+function saveAnalysisState() {
+    if (!analysisNext) {
+        return;
+    }
+
+    localStorage.setItem(analysisStorageKey, JSON.stringify(getAnalysisState()));
+}
+
+function restoreAnalysisState() {
+    if (!analysisNext) {
+        return;
+    }
+
+    try {
+        const storedState = JSON.parse(localStorage.getItem(analysisStorageKey) || "{}");
+
+        if (Array.isArray(storedState.reportAnswers)) {
+            storedState.reportAnswers.forEach((savedDropzone) => {
+                const dropzone = Array.from(reportDropzones).find((zone) => zone.dataset.answer === savedDropzone.answer);
+
+                if (dropzone && savedDropzone.currentAnswer) {
+                    placeReportAnswer(dropzone, savedDropzone.currentAnswer, false);
+                }
+            });
+        }
+
+        if (storedState.choices && typeof storedState.choices === "object") {
+            analysisChoiceGroups.forEach((group) => {
+                const selectedChoice = storedState.choices[group.dataset.analysisGroup];
+
+                if (!selectedChoice) {
+                    return;
+                }
+
+                group.querySelectorAll("button").forEach((button) => {
+                    button.classList.toggle("selected", button.textContent.trim() === selectedChoice);
+                });
+            });
+        }
+    } catch (error) {
+        localStorage.removeItem(analysisStorageKey);
+    }
+}
+
+function getUsedReportAnswers() {
+    return Array.from(reportDropzones)
+        .map((dropzone) => dropzone.dataset.currentAnswer)
+        .filter(Boolean);
+}
+
+function renderReportAnswers() {
+    const usedAnswers = getUsedReportAnswers();
+
+    reportAnswerButtons.forEach((button) => {
+        const isUsed = usedAnswers.includes(button.dataset.reportAnswer);
+
+        button.classList.toggle("used", isUsed);
+        button.classList.toggle("selected-drag-answer", button.dataset.reportAnswer === selectedReportAnswer && !isUsed);
+        button.disabled = isUsed;
+    });
+}
+
+function updateAnalysisNext() {
+    if (!analysisNext) {
+        return;
+    }
+
+    const reportComplete = Array.from(reportDropzones).every((dropzone) => dropzone.classList.contains("correct"));
+    const choicesComplete = Array.from(analysisChoiceGroups).every((group) => group.querySelector(".selected"));
+    const isComplete = reportComplete && choicesComplete;
+
+    analysisNext.classList.toggle("disabled", !isComplete);
+    analysisNext.setAttribute("aria-disabled", String(!isComplete));
+}
+
+function placeReportAnswer(dropzone, answer, shouldSave = true) {
+    if (!dropzone || !answer) {
+        return;
+    }
+
+    const previousZone = Array.from(reportDropzones).find((zone) => zone.dataset.currentAnswer === answer);
+
+    if (previousZone && previousZone !== dropzone) {
+        previousZone.textContent = "";
+        delete previousZone.dataset.currentAnswer;
+        previousZone.classList.remove("correct", "incorrect");
+    }
+
+    dropzone.textContent = answer;
+    dropzone.dataset.currentAnswer = answer;
+    dropzone.classList.toggle("correct", answer === dropzone.dataset.answer);
+    dropzone.classList.toggle("incorrect", answer !== dropzone.dataset.answer);
+
+    if (selectedReportAnswer === answer) {
+        selectedReportAnswer = "";
+    }
+
+    renderReportAnswers();
+    updateAnalysisNext();
+
+    if (shouldSave) {
+        saveAnalysisState();
+    }
+}
+
+if (analysisNext) {
+    reportAnswerButtons.forEach((button) => {
+        button.addEventListener("dragstart", (event) => {
+            event.dataTransfer.setData("text/plain", button.dataset.reportAnswer);
+        });
+
+        button.addEventListener("click", () => {
+            selectedReportAnswer = selectedReportAnswer === button.dataset.reportAnswer ? "" : button.dataset.reportAnswer;
+            renderReportAnswers();
+        });
+    });
+
+    reportDropzones.forEach((dropzone) => {
+        dropzone.addEventListener("dragover", (event) => {
+            event.preventDefault();
+            dropzone.classList.add("drag-over");
+        });
+
+        dropzone.addEventListener("dragleave", () => {
+            dropzone.classList.remove("drag-over");
+        });
+
+        dropzone.addEventListener("drop", (event) => {
+            event.preventDefault();
+            dropzone.classList.remove("drag-over");
+            placeReportAnswer(dropzone, event.dataTransfer.getData("text/plain"));
+        });
+
+        dropzone.addEventListener("click", () => {
+            placeReportAnswer(dropzone, selectedReportAnswer);
+        });
+    });
+
+    analysisChoiceGroups.forEach((group) => {
+        group.querySelectorAll("button").forEach((button) => {
+            button.addEventListener("click", () => {
+                group.querySelectorAll("button").forEach((option) => option.classList.remove("selected"));
+                button.classList.add("selected");
+                saveAnalysisState();
+                updateAnalysisNext();
+            });
+        });
+    });
+
+    analysisNext.addEventListener("click", (event) => {
+        if (analysisNext.getAttribute("aria-disabled") === "true") {
+            event.preventDefault();
+        }
+    });
+
+    restoreAnalysisState();
+    renderReportAnswers();
+    updateAnalysisNext();
+}
 
 const cameraConstraints = {
     video: {
