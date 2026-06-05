@@ -2,17 +2,77 @@ const heroCards = document.querySelectorAll(".hero-card");
 const heroPopup = document.getElementById("heroPopup");
 const popupHeroImage = document.getElementById("popupHeroImage");
 const popupHeroName = document.getElementById("popupHeroName");
+const popupHeroRole = document.getElementById("popupHeroRole");
+const popupHeroSkills = document.getElementById("popupHeroSkills");
+const popupHeroPrice = document.getElementById("popupHeroPrice");
+const popupHeroSynergy = document.getElementById("popupHeroSynergy");
 const closePopup = document.getElementById("closePopup");
 
-if (heroPopup && popupHeroImage && popupHeroName && closePopup) {
+const heroDetails = {
+    "Iron Man": {
+        role: "Technology Specialist",
+        skills: "Engineering \u2022 Flight \u2022 Heavy Firepower",
+        price: "$50.000",
+        synergy: "Works effectively alongside Captain America and Spider-Man. Excels in missions requiring advanced technology, strategic planning and high offensive capabilities."
+    },
+    "Ms. Marvel": {
+        role: "Field Operative",
+        skills: "Shape-Shifting \u2022 Combat \u2022 Adaptability",
+        price: "$30.000",
+        synergy: "Works effectively alongside Captain America and Black Widow. Excels in missions requiring flexibility, quick response and team coordination."
+    },
+    Hawkeye: {
+        role: "Marksman Specialist",
+        skills: "Precision \u2022 Reconnaissance \u2022 Archery",
+        price: "$25.000",
+        synergy: "Works effectively alongside Black Widow and Captain America. Excels in missions requiring long-range support, surveillance and tactical positioning."
+    },
+    Hulk: {
+        role: "Heavy Assault Specialist",
+        skills: "Super Strength \u2022 Durability \u2022 Intimidation",
+        price: "$45.000",
+        synergy: "Works effectively alongside Thor and Iron Man. Excels in missions requiring brute force, large-scale combat and threat neutralization."
+    },
+    Thor: {
+        role: "Power Assault Specialist",
+        skills: "Lightning Control \u2022 Strength \u2022 Combat",
+        price: "$45.000",
+        synergy: "Works effectively alongside Hulk and Captain America. Excels in missions requiring overwhelming force, battlefield control and frontline engagement."
+    },
+    "Spider-Man": {
+        role: "Recon Specialist",
+        skills: "Agility \u2022 Web Tactics \u2022 Detection",
+        price: "$25.000",
+        synergy: "Works effectively alongside Iron Man and Ms. Marvel. Excels in missions requiring mobility, stealth operations and rapid threat assessment."
+    },
+    "Captain America": {
+        role: "Tactical Leader",
+        skills: "Leadership \u2022 Combat \u2022 Strategy",
+        price: "$40.000",
+        synergy: "Works effectively alongside Iron Man and Black Widow. Excels in missions requiring coordination, decision-making and balanced team deployment."
+    },
+    "Black Widow": {
+        role: "Infiltration Specialist",
+        skills: "Stealth \u2022 Espionage \u2022 Combat",
+        price: "$35.000",
+        synergy: "Works effectively alongside Captain America and Hawkeye. Excels in missions requiring stealth, intelligence gathering and covert operations."
+    }
+};
+
+if (heroPopup && popupHeroImage && popupHeroName && popupHeroRole && popupHeroSkills && popupHeroPrice && popupHeroSynergy && closePopup) {
     heroCards.forEach((card) => {
         card.addEventListener("click", () => {
             const heroName = card.dataset.name;
             const heroImage = card.dataset.img;
+            const details = heroDetails[heroName];
 
             popupHeroName.textContent = heroName;
             popupHeroImage.src = heroImage;
             popupHeroImage.alt = heroName;
+            popupHeroRole.textContent = details.role;
+            popupHeroSkills.textContent = details.skills;
+            popupHeroPrice.textContent = details.price;
+            popupHeroSynergy.textContent = details.synergy;
 
             heroPopup.classList.add("active");
         });

@@ -1287,15 +1287,15 @@ img {
 }
 
 .tracked-filter.glasses {
-    top: calc(var(--face-y) - (var(--face-h) * 0.15));
-    width: calc(var(--face-w) * 0.98);
-    height: calc(var(--face-h) * 0.28);
+    top: calc(var(--face-y) - (var(--face-h) * 0.14));
+    width: calc(var(--face-w) * 0.84);
+    height: calc(var(--face-h) * 0.22);
 }
 
 .tracked-filter.hat {
-    top: calc(var(--face-y) - (var(--face-h) * 0.54));
-    width: calc(var(--face-w) * 1.15);
-    height: calc(var(--face-h) * 0.55);
+    top: calc(var(--face-y) - (var(--face-h) * 0.48));
+    width: calc(var(--face-w) * 0.95);
+    height: calc(var(--face-h) * 0.44);
 }
 
 .tracked-filter.glasses1 {
