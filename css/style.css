@@ -11,6 +11,11 @@ body {
     background-position: center;
     color: white;
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
 }
 
 .topbar {
@@ -1356,4 +1361,558 @@ body {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 48px;
     letter-spacing: 1px;
+}
+
+@media (max-width: 1180px) {
+    .landing-screen,
+    .dossier-screen,
+    .briefing-screen,
+    .result-screen {
+        min-height: calc(100vh - 80px);
+        padding: 36px 24px 120px;
+    }
+
+    .landing-screen,
+    .dossier-screen,
+    .result-screen {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .info-panel,
+    .news-panel,
+    .dossier-area,
+    .bottom-nav,
+    .back-button,
+    .next-button,
+    .progress-bar,
+    .dossier-folder,
+    .notes-box,
+    .analyse-folder,
+    .team-sidebar,
+    .hero-grid,
+    .confirm-dossier,
+    .chosen-team,
+    .result-left,
+    .impact-box,
+    .mission-report,
+    .home-button {
+        position: static;
+        transform: none;
+    }
+
+    .back-button,
+    .next-button,
+    .home-button {
+        align-self: flex-start;
+        font-size: 40px;
+        line-height: 1;
+    }
+
+    .next-button,
+    .home-button {
+        align-self: flex-end;
+        margin-top: 8px;
+    }
+
+    .progress-bar {
+        width: min(100%, 760px);
+        margin: 0 auto;
+    }
+
+    .progress-analyse::before,
+    .progress-team::before,
+    .progress-confirm::before {
+        left: 24px;
+        right: 24px;
+        width: auto;
+    }
+
+    .agent-info,
+    .mission-info,
+    .news-panel {
+        width: 100%;
+        height: auto;
+        min-height: 140px;
+    }
+
+    .dossier-area {
+        margin-left: 0;
+    }
+
+    .dossier-area h2 {
+        margin-left: 0;
+    }
+
+    .folder-row,
+    .bottom-nav,
+    .chosen-row,
+    .confirm-summary {
+        flex-wrap: wrap;
+    }
+
+    .folder-button img {
+        height: clamp(160px, 22vw, 245px);
+    }
+
+    .bottom-nav {
+        width: 100%;
+        gap: 16px;
+        transform: none;
+    }
+
+    .bottom-nav a {
+        flex: 1 1 210px;
+    }
+
+    .dossier-folder {
+        width: min(100%, 760px);
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .notes-box {
+        width: min(100%, 760px);
+        height: 160px;
+        margin: 0 auto;
+    }
+
+    .analyse-folder {
+        width: min(100%, 520px);
+        margin: 0 auto;
+    }
+
+    .team-sidebar {
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(230px, 305px) 1fr;
+        align-items: start;
+        gap: 24px;
+    }
+
+    .filter-button {
+        margin: 0;
+    }
+
+    .team-summary {
+        width: 100%;
+        height: auto;
+    }
+
+    .hero-grid {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+        gap: 24px;
+        padding-right: 0;
+        overflow: visible;
+    }
+
+    .confirm-dossier,
+    .chosen-team,
+    .mission-report {
+        width: min(100%, 640px);
+        height: auto;
+        min-height: 0;
+        margin: 0 auto;
+    }
+
+    .confirm-summary div {
+        flex: 1 1 240px;
+        width: auto;
+    }
+
+    .result-left {
+        width: min(100%, 520px);
+        margin: 0 auto;
+    }
+
+    .result-box,
+    .impact-box {
+        width: 100%;
+    }
+
+    .briefing-call {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: min(100%, 940px);
+        height: auto;
+        margin: 0 auto;
+        padding: 72px 14px 54px;
+    }
+
+    .briefing-call h2 {
+        left: 8px;
+        right: 8px;
+    }
+
+    .call-grid {
+        position: static;
+        width: 100%;
+        height: auto;
+        grid-template-rows: none;
+    }
+}
+
+@media (max-width: 760px) {
+    .topbar {
+        height: auto;
+        min-height: 76px;
+        padding: 10px 14px;
+        gap: 10px;
+    }
+
+    .header-left {
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .header-right {
+        flex-shrink: 0;
+    }
+
+    .shield-logo {
+        height: 42px;
+    }
+
+    .agent-logo {
+        height: 48px;
+    }
+
+    .topbar h1 {
+        font-size: 22px;
+        letter-spacing: 2px;
+    }
+
+    .topbar p {
+        display: none;
+    }
+
+    .start-screen {
+        min-height: calc(100vh - 76px);
+        padding: 36px 18px;
+    }
+
+    .login-icon {
+        height: 170px;
+    }
+
+    .login-card h2 {
+        font-size: 26px;
+    }
+
+    .button {
+        width: min(100%, 260px);
+        padding: 14px 24px;
+    }
+
+    .landing-screen,
+    .dossier-screen,
+    .briefing-screen,
+    .result-screen {
+        min-height: calc(100vh - 76px);
+        padding: 24px 16px 96px;
+        gap: 20px;
+    }
+
+    .info-panel,
+    .news-panel {
+        padding: 20px;
+        font-size: 17px;
+        min-height: 115px;
+    }
+
+    .dossier-area h2 {
+        display: block;
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 26px;
+    }
+
+    .folder-row {
+        gap: 16px;
+    }
+
+    .folder-button img {
+        height: 145px;
+    }
+
+    .bottom-nav {
+        gap: 10px;
+    }
+
+    .bottom-nav a {
+        flex-basis: 145px;
+        height: 54px;
+        font-size: 15px;
+    }
+
+    .back-button,
+    .next-button,
+    .home-button {
+        font-size: 32px;
+    }
+
+    .progress-step {
+        width: 30px;
+        height: 30px;
+    }
+
+    .progress-analyse::before,
+    .progress-team::before,
+    .progress-confirm::before {
+        top: 14px;
+    }
+
+    .dossier-folder {
+        grid-template-columns: 1fr;
+    }
+
+    .dossier-images {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 18px;
+        border-right: none;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.35);
+    }
+
+    .dossier-images img {
+        width: 100%;
+        height: 145px;
+    }
+
+    .dossier-images img:nth-child(3),
+    .pietro-img {
+        grid-column: auto;
+    }
+
+    .dossier-content,
+    .confirm-dossier,
+    .mission-report {
+        padding: 24px 22px;
+    }
+
+    .dossier-intro,
+    .confirm-dossier-top,
+    .hero-popup-top,
+    .result-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .analyse-options {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .analyse-options button {
+        min-height: 36px;
+        padding: 8px 10px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+    }
+
+    .team-sidebar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filter-button {
+        width: 135px;
+        height: 40px;
+        font-size: 24px;
+    }
+
+    .team-summary {
+        padding: 24px 22px;
+    }
+
+    .team-summary ul {
+        margin-bottom: 36px;
+    }
+
+    .hero-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .hero-card {
+        height: 235px;
+    }
+
+    .hero-card img {
+        height: 190px;
+    }
+
+    .hero-card button {
+        padding: 0 10px;
+        font-size: 17px;
+    }
+
+    .hero-popup {
+        top: 0;
+        padding: 14px;
+        overflow-y: auto;
+        align-items: flex-start;
+    }
+
+    .hero-popup-card,
+    .hero-modal-content {
+        width: 100%;
+        min-height: 0;
+        padding: 24px 20px 72px;
+        border-radius: 8px;
+    }
+
+    .hero-popup-top img,
+    .hero-modal-content img {
+        width: 180px;
+        height: 220px;
+    }
+
+    .hero-popup-info,
+    .hero-modal-info {
+        position: static;
+        width: 100%;
+    }
+
+    .close-popup,
+    .close-modal {
+        right: 20px;
+        bottom: 20px;
+        font-size: 32px;
+    }
+
+    .chosen-row {
+        gap: 16px;
+    }
+
+    .small-card {
+        width: min(100%, 170px);
+        height: 245px;
+    }
+
+    .small-card img {
+        height: 200px;
+    }
+
+    .confirm-summary {
+        gap: 16px;
+    }
+
+    .briefing-call {
+        padding: 62px 8px 52px;
+    }
+
+    .briefing-call h2 {
+        height: 46px;
+        font-size: 25px;
+    }
+
+    .call-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .call-grid > div {
+        min-height: 130px;
+    }
+
+    .call-grid img,
+    .you-box img {
+        width: 86px;
+        height: 86px;
+    }
+
+    .chat-box {
+        grid-column: auto;
+        min-height: 170px;
+        overflow-y: auto;
+    }
+
+    .chat-input {
+        width: 100%;
+    }
+
+    .call-controls button {
+        width: 56px;
+        height: 38px;
+    }
+
+    .call-controls .hangup {
+        width: 76px;
+    }
+
+    .call-controls button img,
+    .call-controls .hangup img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .result-box {
+        gap: 8px;
+    }
+
+    .result-box h2,
+    .result-box p {
+        font-size: 20px;
+    }
+
+    .evaluation-box p {
+        width: auto;
+    }
+}
+
+@media (max-width: 430px) {
+    .topbar h1 {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .shield-logo {
+        height: 36px;
+    }
+
+    .agent-logo {
+        height: 42px;
+    }
+
+    .folder-row {
+        justify-content: space-between;
+    }
+
+    .folder-button img {
+        height: 112px;
+    }
+
+    .dossier-images {
+        grid-template-columns: 1fr;
+    }
+
+    .dossier-images img {
+        height: 180px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-card {
+        height: 270px;
+    }
+
+    .hero-card img {
+        height: 225px;
+    }
+
+    .call-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .call-grid > div {
+        min-height: 118px;
+    }
 }
