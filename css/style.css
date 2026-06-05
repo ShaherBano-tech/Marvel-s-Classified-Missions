@@ -1133,6 +1133,7 @@ img {
     position: absolute;
     top: 215px;
     left: 590px;
+    width: 850px;
     color: white;
 }
 
@@ -1145,26 +1146,37 @@ img {
     display: flex;
     align-items: center;
     gap: 30px;
+    width: 870px;
+    overflow: visible;
 }
 
-.small-card {
+.confirm-hero-slot {
     position: relative;
-    width: 195px;
-    height: 275px;
-}
-
-.small-card img {
-    height: 225px;
+    width: 185px;
+    height: 260px;
 }
 
 .remove-hero {
     position: absolute;
-    top: 8px;
-    right: 12px;
-    z-index: 2;
-    color: black;
+    top: -18px;
+    left: -18px;
+    z-index: 4;
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 999px;
+
+    color: white;
     font-size: 28px;
     font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
 }
 
 .confirm-summary {
@@ -1183,6 +1195,117 @@ img {
 .confirm-summary h3 {
     font-size: 34px;
 } 
+
+.confirm-summary p {
+    margin-top: 14px;
+
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.confirm-team-more {
+    position: absolute;
+    top: 118px;
+    left: 905px;
+
+    background: none;
+    border: none;
+
+    color: white;
+
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.confirm-team-more:hover {
+    color: #ff4655;
+}
+
+.confirm-team-popup-card {
+    width: 360px;
+    min-height: 520px;
+}
+
+.confirm-team-popup-card h2,
+.confirm-team-popup-card p,
+.confirm-team-popup-card li {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.confirm-team-popup-card h2 {
+    margin-bottom: 24px;
+
+    font-size: 34px;
+    font-weight: 400;
+}
+
+.confirm-team-popup-card p {
+    margin-bottom: 34px;
+
+    font-size: 20px;
+}
+
+.confirm-team-popup-card ul {
+    max-height: 290px;
+    overflow-y: auto;
+    padding-right: 8px;
+
+    list-style: none;
+}
+
+.confirm-team-popup-card ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+.confirm-team-popup-card ul::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.confirm-team-popup-card ul::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+}
+
+.confirm-team-popup-card li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 14px;
+
+    font-size: 20px;
+}
+
+.confirm-team-popup-card li span {
+    flex: 1;
+}
+
+.confirm-team-popup-card li button {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    border: 1px solid transparent;
+    color: white;
+
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.confirm-team-popup-card li button:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
 
 .briefing-screen {
     position: relative;
@@ -1970,6 +2093,17 @@ img {
         height: auto;
         min-height: 0;
         margin: 0 auto;
+    }
+
+    .chosen-row {
+        width: 100%;
+        overflow: visible;
+    }
+
+    .confirm-team-more {
+        position: static;
+        align-self: flex-start;
+        margin-top: 18px;
     }
 
     .confirm-summary div {

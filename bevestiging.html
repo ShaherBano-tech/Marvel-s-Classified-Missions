@@ -69,45 +69,49 @@
                 Recommended approach:<br>
                 A balanced team with both technological and offensive capabilities is advised.
             </p>
+
         </section>
 
         <section class="chosen-team">
             <h2>Chosen hero's</h2>
 
-            <div class="chosen-row">
-                <div class="hero-card small-card">
-                    <span class="remove-hero">×</span>
-                    <img src="Images/Iron-Man.png" alt="Iron Man">
-                    <button>Iron Man <span>▼</span></button>
-                </div>
-
-                <div class="hero-card small-card">
-                    <span class="remove-hero">×</span>
-                    <img src="Images/CaptainAmerica.png" alt="Captain America">
-                    <button>Captain America <span>▼</span></button>
-                </div>
-
-                <div class="hero-card small-card">
-                    <span class="remove-hero">×</span>
-                    <img src="Images/BlackWidow.png" alt="Black Widow">
-                    <button>Black Widow <span>▼</span></button>
-                </div>
+            <div class="chosen-row" id="confirmChosenHeroes">
+                <p class="empty-selection">No heroes selected</p>
             </div>
+
+            <button class="confirm-team-more" id="confirmTeamMore" type="button">More</button>
 
             <div class="confirm-summary">
                 <div>
                     <h3>Succes rate</h3>
+                    <p id="confirmSuccessRate">0%</p>
                 </div>
 
                 <div>
                     <h3>Total costs:</h3>
+                    <p id="confirmTotalCosts">$0</p>
                 </div>
             </div>
         </section>
 
         <a href="./AR.html" class="next-button">Disguise Check &gt;</a>
 
+        <section class="hero-popup" id="confirmTeamPopup">
+            <div class="hero-popup-card confirm-team-popup-card">
+                <h2>Selected hero's</h2>
+                <p id="confirmPopupAmount">Amount (0/6)</p>
+
+                <ul id="confirmPopupHeroList">
+                    <li class="empty-selection">No heroes selected</li>
+                </ul>
+
+                <button class="close-popup" id="confirmClosePopup" type="button">Close</button>
+            </div>
+        </section>
+
     </main>
 
+    <script src="js/script.js"></script>
 </body>
 </html>
+

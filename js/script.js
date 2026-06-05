@@ -17,8 +17,20 @@ const selectedHeroes = [];
 const selectedHeroesStorageKey = "shieldSelectedHeroes";
 const analysisStorageKey = "shieldAnalysisState";
 
+if (document.querySelector(".start-screen")) {
+    localStorage.removeItem(selectedHeroesStorageKey);
+    localStorage.removeItem(analysisStorageKey);
+}
+
+if (window.location?.pathname?.endsWith("landing.html") && new URLSearchParams(window.location.search).get("reset") === "mission") {
+    localStorage.removeItem(selectedHeroesStorageKey);
+    localStorage.removeItem(analysisStorageKey);
+    window.history.replaceState({}, "", "landing.html");
+}
+
 const heroDetails = {
     "Iron Man": {
+        image: "Images/Iron-Man.png",
         role: "Technology Specialist",
         skills: "Engineering \u2022 Flight \u2022 Heavy Firepower",
         price: "$50.000",
@@ -27,6 +39,7 @@ const heroDetails = {
         synergy: "Works effectively alongside Captain America and Spider-Man. Excels in missions requiring advanced technology, strategic planning and high offensive capabilities."
     },
     "Ms. Marvel": {
+        image: "Images/Ms.Marvel.png",
         role: "Field Operative",
         skills: "Shape-Shifting \u2022 Combat \u2022 Adaptability",
         price: "$30.000",
@@ -35,6 +48,7 @@ const heroDetails = {
         synergy: "Works effectively alongside Captain America and Black Widow. Excels in missions requiring flexibility, quick response and team coordination."
     },
     Hawkeye: {
+        image: "Images/Hawkeye.png",
         role: "Marksman Specialist",
         skills: "Precision \u2022 Reconnaissance \u2022 Archery",
         price: "$25.000",
@@ -43,6 +57,7 @@ const heroDetails = {
         synergy: "Works effectively alongside Black Widow and Captain America. Excels in missions requiring long-range support, surveillance and tactical positioning."
     },
     Hulk: {
+        image: "Images/Hulk.png",
         role: "Heavy Assault Specialist",
         skills: "Super Strength \u2022 Durability \u2022 Intimidation",
         price: "$45.000",
@@ -51,6 +66,7 @@ const heroDetails = {
         synergy: "Works effectively alongside Thor and Iron Man. Excels in missions requiring brute force, large-scale combat and threat neutralization."
     },
     Thor: {
+        image: "Images/Thor.png",
         role: "Power Assault Specialist",
         skills: "Lightning Control \u2022 Strength \u2022 Combat",
         price: "$45.000",
@@ -59,6 +75,7 @@ const heroDetails = {
         synergy: "Works effectively alongside Hulk and Captain America. Excels in missions requiring overwhelming force, battlefield control and frontline engagement."
     },
     "Spider-Man": {
+        image: "Images/Spiderman.png",
         role: "Recon Specialist",
         skills: "Agility \u2022 Web Tactics \u2022 Detection",
         price: "$25.000",
@@ -67,6 +84,7 @@ const heroDetails = {
         synergy: "Works effectively alongside Iron Man and Ms. Marvel. Excels in missions requiring mobility, stealth operations and rapid threat assessment."
     },
     "Captain America": {
+        image: "Images/CaptainAmerica.png",
         role: "Tactical Leader",
         skills: "Leadership \u2022 Combat \u2022 Strategy",
         price: "$40.000",
@@ -75,6 +93,7 @@ const heroDetails = {
         synergy: "Works effectively alongside Iron Man and Black Widow. Excels in missions requiring coordination, decision-making and balanced team deployment."
     },
     "Black Widow": {
+        image: "Images/BlackWidow.png",
         role: "Infiltration Specialist",
         skills: "Stealth \u2022 Espionage \u2022 Combat",
         price: "$35.000",
@@ -92,12 +111,12 @@ function heroesWorkWellTogether(firstHero, secondHero) {
     return heroDetails[firstHero].goodWith.includes(secondHero) || heroDetails[secondHero].goodWith.includes(firstHero);
 }
 
-function getTeamStats() {
+function getTeamStatsFor(heroNames) {
     let synergyPairs = 0;
     let totalPairs = 0;
 
-    selectedHeroes.forEach((firstHero, firstIndex) => {
-        selectedHeroes.slice(firstIndex + 1).forEach((secondHero) => {
+    heroNames.forEach((firstHero, firstIndex) => {
+        heroNames.slice(firstIndex + 1).forEach((secondHero) => {
             totalPairs += 1;
 
             if (heroesWorkWellTogether(firstHero, secondHero)) {
@@ -107,14 +126,39 @@ function getTeamStats() {
     });
 
     const weakPairs = totalPairs - synergyPairs;
-    const rawSuccess = selectedHeroes.length === 0
+    const rawSuccess = heroNames.length === 0
         ? 0
-        : 35 + (selectedHeroes.length * 7) + (synergyPairs * 6) - (weakPairs * 2);
+        : 35 + (heroNames.length * 7) + (synergyPairs * 6) - (weakPairs * 2);
 
     return {
-        totalCost: selectedHeroes.reduce((total, heroName) => total + heroDetails[heroName].cost, 0),
+        totalCost: heroNames.reduce((total, heroName) => total + heroDetails[heroName].cost, 0),
         success: Math.min(96, Math.max(0, rawSuccess))
     };
+}
+
+function getTeamStats() {
+    return getTeamStatsFor(selectedHeroes);
+}
+
+function getStoredSelectedHeroes() {
+    try {
+        const storedHeroes = JSON.parse(localStorage.getItem(selectedHeroesStorageKey) || "[]");
+
+        if (!Array.isArray(storedHeroes)) {
+            return [];
+        }
+
+        return storedHeroes
+            .filter((heroName) => heroDetails[heroName])
+            .slice(0, maxTeamSize);
+    } catch (error) {
+        localStorage.removeItem(selectedHeroesStorageKey);
+        return [];
+    }
+}
+
+function saveHeroSelection(heroNames) {
+    localStorage.setItem(selectedHeroesStorageKey, JSON.stringify(heroNames));
 }
 
 function renderSelectedTeam() {
@@ -148,7 +192,7 @@ function saveSelectedHeroes() {
         return;
     }
 
-    localStorage.setItem(selectedHeroesStorageKey, JSON.stringify(selectedHeroes));
+    saveHeroSelection(selectedHeroes);
 }
 
 function restoreSelectedHeroes() {
@@ -157,21 +201,12 @@ function restoreSelectedHeroes() {
     }
 
     try {
-        const storedHeroes = JSON.parse(localStorage.getItem(selectedHeroesStorageKey) || "[]");
-
-        if (!Array.isArray(storedHeroes)) {
-            return;
-        }
-
-        storedHeroes
-            .filter((heroName) => heroDetails[heroName])
-            .slice(0, maxTeamSize)
-            .forEach((heroName) => {
-                if (!selectedHeroes.includes(heroName)) {
-                    selectedHeroes.push(heroName);
-                    setCardSelected(heroName, true);
-                }
-            });
+        getStoredSelectedHeroes().forEach((heroName) => {
+            if (!selectedHeroes.includes(heroName)) {
+                selectedHeroes.push(heroName);
+                setCardSelected(heroName, true);
+            }
+        });
     } catch (error) {
         localStorage.removeItem(selectedHeroesStorageKey);
     }
@@ -438,6 +473,121 @@ if (analysisNext) {
     renderReportAnswers();
     updateAnalysisNext();
 }
+
+const confirmChosenHeroes = document.getElementById("confirmChosenHeroes");
+const confirmSuccessRate = document.getElementById("confirmSuccessRate");
+const confirmTotalCosts = document.getElementById("confirmTotalCosts");
+const confirmTeamMore = document.getElementById("confirmTeamMore");
+const confirmTeamPopup = document.getElementById("confirmTeamPopup");
+const confirmPopupAmount = document.getElementById("confirmPopupAmount");
+const confirmPopupHeroList = document.getElementById("confirmPopupHeroList");
+const confirmClosePopup = document.getElementById("confirmClosePopup");
+
+function removeConfirmedHero(heroName) {
+    const updatedHeroes = getStoredSelectedHeroes().filter((storedHeroName) => storedHeroName !== heroName);
+
+    saveHeroSelection(updatedHeroes);
+    renderConfirmStep();
+}
+
+function renderConfirmPopupList(heroNames) {
+    if (!confirmPopupAmount || !confirmPopupHeroList) {
+        return;
+    }
+
+    confirmPopupAmount.textContent = `Amount (${heroNames.length}/${maxTeamSize})`;
+
+    if (heroNames.length === 0) {
+        confirmPopupHeroList.innerHTML = '<li class="empty-selection">No heroes selected</li>';
+        return;
+    }
+
+    confirmPopupHeroList.innerHTML = heroNames
+        .map((heroName, index) => `
+            <li>
+                <span>${index + 1}. ${heroName}</span>
+                <button type="button" data-confirm-remove="${heroName}" aria-label="Remove ${heroName}">\u00d7</button>
+            </li>
+        `)
+        .join("");
+}
+
+function renderConfirmStep() {
+    if (!confirmChosenHeroes) {
+        return;
+    }
+
+    const storedHeroes = getStoredSelectedHeroes();
+    const stats = getTeamStatsFor(storedHeroes);
+    const visibleHeroes = storedHeroes.slice(0, 4);
+
+    if (confirmSuccessRate) {
+        confirmSuccessRate.textContent = `${stats.success}%`;
+    }
+
+    if (confirmTotalCosts) {
+        confirmTotalCosts.textContent = formatPrice(stats.totalCost);
+    }
+
+    if (confirmTeamMore) {
+        confirmTeamMore.hidden = storedHeroes.length <= 4;
+    }
+
+    renderConfirmPopupList(storedHeroes);
+
+    if (visibleHeroes.length === 0) {
+        confirmChosenHeroes.innerHTML = '<p class="empty-selection">No heroes selected</p>';
+        return;
+    }
+
+    confirmChosenHeroes.innerHTML = visibleHeroes
+        .map((heroName) => {
+            const details = heroDetails[heroName];
+
+            return `
+                <div class="confirm-hero-slot">
+                    <button class="remove-hero" type="button" data-confirm-remove="${heroName}" aria-label="Remove ${heroName}">\u00d7</button>
+                    <div class="hero-card">
+                        <img src="${details.image}" alt="${heroName}">
+                        <button type="button">${heroName} <span>\u25bc</span></button>
+                    </div>
+                </div>
+            `;
+        })
+        .join("");
+}
+
+confirmChosenHeroes?.addEventListener("click", (event) => {
+    const removeButton = event.target.closest("[data-confirm-remove]");
+
+    if (removeButton) {
+        removeConfirmedHero(removeButton.dataset.confirmRemove);
+    }
+});
+
+confirmPopupHeroList?.addEventListener("click", (event) => {
+    const removeButton = event.target.closest("[data-confirm-remove]");
+
+    if (removeButton) {
+        removeConfirmedHero(removeButton.dataset.confirmRemove);
+    }
+});
+
+confirmTeamMore?.addEventListener("click", () => {
+    confirmTeamPopup?.classList.add("active");
+});
+
+confirmClosePopup?.addEventListener("click", () => {
+    confirmTeamPopup?.classList.remove("active");
+});
+
+confirmTeamPopup?.addEventListener("click", (event) => {
+    if (event.target === confirmTeamPopup) {
+        confirmTeamPopup.classList.remove("active");
+    }
+});
+
+renderConfirmStep();
 
 const cameraConstraints = {
     video: {
