@@ -7,74 +7,194 @@ const popupHeroSkills = document.getElementById("popupHeroSkills");
 const popupHeroPrice = document.getElementById("popupHeroPrice");
 const popupHeroSynergy = document.getElementById("popupHeroSynergy");
 const closePopup = document.getElementById("closePopup");
+const successRate = document.getElementById("successRate");
+const selectedAmount = document.getElementById("selectedAmount");
+const selectedHeroesList = document.getElementById("selectedHeroesList");
+const totalCosts = document.getElementById("totalCosts");
+
+const maxTeamSize = 6;
+const selectedHeroes = [];
 
 const heroDetails = {
     "Iron Man": {
         role: "Technology Specialist",
         skills: "Engineering \u2022 Flight \u2022 Heavy Firepower",
         price: "$50.000",
+        cost: 50000,
+        goodWith: ["Captain America", "Spider-Man"],
         synergy: "Works effectively alongside Captain America and Spider-Man. Excels in missions requiring advanced technology, strategic planning and high offensive capabilities."
     },
     "Ms. Marvel": {
         role: "Field Operative",
         skills: "Shape-Shifting \u2022 Combat \u2022 Adaptability",
         price: "$30.000",
+        cost: 30000,
+        goodWith: ["Captain America", "Black Widow"],
         synergy: "Works effectively alongside Captain America and Black Widow. Excels in missions requiring flexibility, quick response and team coordination."
     },
     Hawkeye: {
         role: "Marksman Specialist",
         skills: "Precision \u2022 Reconnaissance \u2022 Archery",
         price: "$25.000",
+        cost: 25000,
+        goodWith: ["Black Widow", "Captain America"],
         synergy: "Works effectively alongside Black Widow and Captain America. Excels in missions requiring long-range support, surveillance and tactical positioning."
     },
     Hulk: {
         role: "Heavy Assault Specialist",
         skills: "Super Strength \u2022 Durability \u2022 Intimidation",
         price: "$45.000",
+        cost: 45000,
+        goodWith: ["Thor", "Iron Man"],
         synergy: "Works effectively alongside Thor and Iron Man. Excels in missions requiring brute force, large-scale combat and threat neutralization."
     },
     Thor: {
         role: "Power Assault Specialist",
         skills: "Lightning Control \u2022 Strength \u2022 Combat",
         price: "$45.000",
+        cost: 45000,
+        goodWith: ["Hulk", "Captain America"],
         synergy: "Works effectively alongside Hulk and Captain America. Excels in missions requiring overwhelming force, battlefield control and frontline engagement."
     },
     "Spider-Man": {
         role: "Recon Specialist",
         skills: "Agility \u2022 Web Tactics \u2022 Detection",
         price: "$25.000",
+        cost: 25000,
+        goodWith: ["Iron Man", "Ms. Marvel"],
         synergy: "Works effectively alongside Iron Man and Ms. Marvel. Excels in missions requiring mobility, stealth operations and rapid threat assessment."
     },
     "Captain America": {
         role: "Tactical Leader",
         skills: "Leadership \u2022 Combat \u2022 Strategy",
         price: "$40.000",
+        cost: 40000,
+        goodWith: ["Iron Man", "Black Widow"],
         synergy: "Works effectively alongside Iron Man and Black Widow. Excels in missions requiring coordination, decision-making and balanced team deployment."
     },
     "Black Widow": {
         role: "Infiltration Specialist",
         skills: "Stealth \u2022 Espionage \u2022 Combat",
         price: "$35.000",
+        cost: 35000,
+        goodWith: ["Captain America", "Hawkeye"],
         synergy: "Works effectively alongside Captain America and Hawkeye. Excels in missions requiring stealth, intelligence gathering and covert operations."
     }
 };
 
-if (heroPopup && popupHeroImage && popupHeroName && popupHeroRole && popupHeroSkills && popupHeroPrice && popupHeroSynergy && closePopup) {
+function formatPrice(cost) {
+    return `$${String(cost).replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+}
+
+function heroesWorkWellTogether(firstHero, secondHero) {
+    return heroDetails[firstHero].goodWith.includes(secondHero) || heroDetails[secondHero].goodWith.includes(firstHero);
+}
+
+function getTeamStats() {
+    let synergyPairs = 0;
+    let totalPairs = 0;
+
+    selectedHeroes.forEach((firstHero, firstIndex) => {
+        selectedHeroes.slice(firstIndex + 1).forEach((secondHero) => {
+            totalPairs += 1;
+
+            if (heroesWorkWellTogether(firstHero, secondHero)) {
+                synergyPairs += 1;
+            }
+        });
+    });
+
+    const weakPairs = totalPairs - synergyPairs;
+    const rawSuccess = selectedHeroes.length === 0
+        ? 0
+        : 35 + (selectedHeroes.length * 7) + (synergyPairs * 6) - (weakPairs * 2);
+
+    return {
+        totalCost: selectedHeroes.reduce((total, heroName) => total + heroDetails[heroName].cost, 0),
+        success: Math.min(96, Math.max(0, rawSuccess))
+    };
+}
+
+function renderSelectedTeam() {
+    if (!successRate || !selectedAmount || !selectedHeroesList || !totalCosts) {
+        return;
+    }
+
+    const stats = getTeamStats();
+
+    successRate.textContent = `Succes rate ${stats.success}%`;
+    selectedAmount.textContent = `Amount (${selectedHeroes.length}/${maxTeamSize})`;
+    totalCosts.textContent = formatPrice(stats.totalCost);
+
+    if (selectedHeroes.length === 0) {
+        selectedHeroesList.innerHTML = '<li class="empty-selection">No heroes selected</li>';
+        return;
+    }
+
+    selectedHeroesList.innerHTML = selectedHeroes
+        .map((heroName, index) => `
+            <li>
+                <span>${index + 1}. ${heroName}</span>
+                <button type="button" data-remove-hero="${heroName}" aria-label="Remove ${heroName}">\u00d7</button>
+            </li>
+        `)
+        .join("");
+}
+
+function setCardSelected(heroName, isSelected) {
+    const card = Array.from(heroCards).find((heroCard) => heroCard.dataset.name === heroName);
+
+    card?.classList.toggle("selected", isSelected);
+}
+
+function toggleHeroSelection(heroName) {
+    const existingIndex = selectedHeroes.indexOf(heroName);
+
+    if (existingIndex >= 0) {
+        selectedHeroes.splice(existingIndex, 1);
+        setCardSelected(heroName, false);
+        renderSelectedTeam();
+        return;
+    }
+
+    if (selectedHeroes.length >= maxTeamSize) {
+        return;
+    }
+
+    selectedHeroes.push(heroName);
+    setCardSelected(heroName, true);
+    renderSelectedTeam();
+}
+
+function openHeroPopup(heroName, heroImage) {
+    if (!heroPopup || !popupHeroImage || !popupHeroName || !popupHeroRole || !popupHeroSkills || !popupHeroPrice || !popupHeroSynergy) {
+        return;
+    }
+
+    const details = heroDetails[heroName];
+
+    popupHeroName.textContent = heroName;
+    popupHeroImage.src = heroImage;
+    popupHeroImage.alt = heroName;
+    popupHeroRole.textContent = details.role;
+    popupHeroSkills.textContent = details.skills;
+    popupHeroPrice.textContent = details.price;
+    popupHeroSynergy.textContent = details.synergy;
+
+    heroPopup.classList.add("active");
+}
+
+if (heroPopup && closePopup) {
     heroCards.forEach((card) => {
+        const cardButton = card.querySelector("button");
+
         card.addEventListener("click", () => {
-            const heroName = card.dataset.name;
-            const heroImage = card.dataset.img;
-            const details = heroDetails[heroName];
+            toggleHeroSelection(card.dataset.name);
+        });
 
-            popupHeroName.textContent = heroName;
-            popupHeroImage.src = heroImage;
-            popupHeroImage.alt = heroName;
-            popupHeroRole.textContent = details.role;
-            popupHeroSkills.textContent = details.skills;
-            popupHeroPrice.textContent = details.price;
-            popupHeroSynergy.textContent = details.synergy;
-
-            heroPopup.classList.add("active");
+        cardButton?.addEventListener("click", (event) => {
+            event.stopPropagation();
+            openHeroPopup(card.dataset.name, card.dataset.img);
         });
     });
 
@@ -88,6 +208,16 @@ if (heroPopup && popupHeroImage && popupHeroName && popupHeroRole && popupHeroSk
         }
     });
 }
+
+selectedHeroesList?.addEventListener("click", (event) => {
+    const removeButton = event.target.closest("[data-remove-hero]");
+
+    if (removeButton) {
+        toggleHeroSelection(removeButton.dataset.removeHero);
+    }
+});
+
+renderSelectedTeam();
 
 const cameraConstraints = {
     video: {

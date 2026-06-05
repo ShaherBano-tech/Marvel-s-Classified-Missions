@@ -37,17 +37,14 @@
             <button class="filter-button">Filter</button>
 
             <div class="team-summary">
-                <h2>Succes rate %</h2>
-                <p>Amount (4/6)...</p>
+                <h2 id="successRate">Succes rate 0%</h2>
+                <p id="selectedAmount">Amount (0/6)</p>
 
-                <ul>
-                    <li>Hero 1 <span>×</span></li>
-                    <li>Hero 2 <span>×</span></li>
-                    <li>Hero 3 <span>×</span></li>
-                    <li>Hero 4 <span>×</span></li>
+                <ul id="selectedHeroesList">
+                    <li class="empty-selection">No heroes selected</li>
                 </ul>
 
-                <h3>Total costs:</h3>
+                <h3>Total costs: <span id="totalCosts">$0</span></h3>
             </div>
         </section>
 

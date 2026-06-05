@@ -604,6 +604,9 @@ img {
     width: 305px;
     height: 480px;
 
+    display: flex;
+    flex-direction: column;
+
     padding: 32px 30px;
 
     background: #1b2940;
@@ -620,35 +623,86 @@ img {
 }
 
 .team-summary p {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 
     font-size: 18px;
 }
 
 .team-summary ul {
+    min-height: 0;
+    max-height: 210px;
+    overflow-y: auto;
+    padding-right: 8px;
+
     list-style: none;
-    margin-bottom: 80px;
+    margin-bottom: 24px;
+}
+
+.team-summary ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+.team-summary ul::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.team-summary ul::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
 }
 
 .team-summary li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 14px;
 
     margin-bottom: 14px;
 
     font-size: 18px;
 }
 
-.team-summary li span {
+.team-summary li > span {
+    flex: 1;
+}
+
+.team-summary li button {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    border: 1px solid transparent;
+    color: white;
+
     font-size: 28px;
-    line-height: 18px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.team-summary li button:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.team-summary .empty-selection {
+    color: rgba(255, 255, 255, 0.68);
 }
 
 .team-summary h3 {
+    margin-top: auto;
+
     font-family: 'Bebas Neue', sans-serif;
     font-size: 32px;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.team-summary h3 span {
+    display: block;
+    margin-top: 8px;
 }
 
 .hero-grid {
@@ -689,8 +743,22 @@ img {
 .hero-card {
     height: 260px;
     background: #080f20;
+    outline: 2px solid transparent;
+    outline-offset: -2px;
     border-radius: 6px;
     overflow: hidden;
+    cursor: pointer;
+    transition: outline-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.hero-card:hover,
+.hero-card.selected {
+    outline-color: #ff4655;
+}
+
+.hero-card.selected {
+    box-shadow: 0 0 0 3px rgba(255, 70, 85, 0.25), 0 0 24px rgba(255, 70, 85, 0.35);
+    transform: translateY(-2px);
 }
 
 .hero-card img {
