@@ -338,11 +338,11 @@ function renderBriefingFilters() {
     const glasses = selected.find((item) => item.startsWith("glasses"));
 
     if (hat) {
-        filters.push(`<span class="tracked-filter hat ${hat}"></span>`);
+        filters.push(`<span class="tracked-filter hat ${hat}" data-filter="${hat}"></span>`);
     }
 
     if (glasses) {
-        filters.push(`<span class="tracked-filter glasses ${glasses}"></span>`);
+        filters.push(`<span class="tracked-filter glasses ${glasses}" data-filter="${glasses}"></span>`);
     }
 
     briefingFilterLayer.innerHTML = filters.join("");

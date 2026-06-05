@@ -1280,108 +1280,38 @@ img {
     left: var(--face-x);
     pointer-events: none;
     transform: translate(-50%, -50%);
-    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.65));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.7));
 }
 
 .tracked-filter.glasses {
-    top: calc(var(--face-y) - (var(--face-h) * 0.16));
-    width: calc(var(--face-w) * 0.88);
-    height: calc(var(--face-h) * 0.17);
-}
-
-.tracked-filter.glasses::before,
-.tracked-filter.glasses::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-
-    width: 38%;
-    height: 100%;
-
-    border: 3px solid #070707;
-    border-radius: 46% 46% 56% 56%;
-    background:
-        radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.38) 0 8%, transparent 9%),
-        linear-gradient(145deg, rgba(64, 151, 235, 0.42), rgba(8, 20, 38, 0.85));
-    box-shadow: inset 0 -5px 8px rgba(0, 0, 0, 0.42);
-}
-
-.tracked-filter.glasses::before {
-    left: 2%;
-    transform: translateY(-50%) rotate(3deg);
-}
-
-.tracked-filter.glasses::after {
-    right: 2%;
-    transform: translateY(-50%) rotate(-3deg);
-}
-
-.tracked-filter.glasses {
-    background:
-        linear-gradient(90deg, transparent 40%, #070707 40% 60%, transparent 60%),
-        linear-gradient(90deg, #070707 0 10%, transparent 10% 90%, #070707 90% 100%);
-    border-radius: 999px;
-}
-
-.tracked-filter.glasses2::before,
-.tracked-filter.glasses2::after {
-    border-radius: 14% 14% 42% 42%;
-    background:
-        radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.42) 0 7%, transparent 8%),
-        linear-gradient(145deg, rgba(20, 20, 20, 0.88), rgba(0, 0, 0, 0.98));
+    top: calc(var(--face-y) - (var(--face-h) * 0.15));
+    width: calc(var(--face-w) * 0.98);
+    height: calc(var(--face-h) * 0.28);
 }
 
 .tracked-filter.hat {
-    top: calc(var(--face-y) - (var(--face-h) * 0.58));
-    width: calc(var(--face-w) * 1.02);
-    height: calc(var(--face-h) * 0.42);
+    top: calc(var(--face-y) - (var(--face-h) * 0.54));
+    width: calc(var(--face-w) * 1.15);
+    height: calc(var(--face-h) * 0.55);
 }
 
-.tracked-filter.hat1::before {
-    content: "";
-    position: absolute;
-    left: 5%;
-    right: 5%;
-    bottom: 20%;
-    height: 18%;
-    background: #202020;
-    border-radius: 999px;
+.tracked-filter.glasses1 {
+    background-image: url("data:image/svg+xml,%3Csvg width='220' height='82' viewBox='0 0 220 82' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M88 37h44' stroke='%23050505' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M8 18c18-15 58-16 78 1 11 10 10 32-2 43-18 17-58 17-76 0-12-11-12-34 0-44z' fill='%23101f35' stroke='%23050505' stroke-width='11'/%3E%3Cpath d='M134 19c20-17 60-16 78-1 12 10 12 33 0 44-18 17-58 17-76 0-12-11-13-33-2-43z' fill='%23101f35' stroke='%23050505' stroke-width='11'/%3E%3Cpath d='M22 25c14-9 42-10 55-1' stroke='%2358b5ff' stroke-opacity='.55' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M148 25c14-9 42-10 55-1' stroke='%2358b5ff' stroke-opacity='.55' stroke-width='8' stroke-linecap='round'/%3E%3Ccircle cx='42' cy='28' r='7' fill='%23ffffff' fill-opacity='.22'/%3E%3Ccircle cx='166' cy='28' r='7' fill='%23ffffff' fill-opacity='.22'/%3E%3C/svg%3E");
 }
 
-.tracked-filter.hat1::after {
-    content: "";
-    position: absolute;
-    left: 29%;
-    top: 6%;
-    width: 42%;
-    height: 58%;
-    background: linear-gradient(180deg, #444 0%, #111 70%);
-    border-radius: 10% 10% 18% 18%;
-    transform: rotate(-4deg);
+.tracked-filter.glasses2 {
+    background-image: url("data:image/svg+xml,%3Csvg width='230' height='92' viewBox='0 0 230 92' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M91 42h48' stroke='%23000000' stroke-width='13' stroke-linecap='round'/%3E%3Cpath d='M12 18c25-7 60-6 77 8 9 8 7 36-7 45-20 13-55 11-72-3-13-11-11-44 2-50z' fill='%23090909' stroke='%23f5f5f5' stroke-width='7'/%3E%3Cpath d='M141 26c17-14 52-15 77-8 13 6 15 39 2 50-17 14-52 16-72 3-14-9-16-37-7-45z' fill='%23090909' stroke='%23f5f5f5' stroke-width='7'/%3E%3Cpath d='M26 27c13-7 37-7 50 0' stroke='%234d4d4d' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M154 27c13-7 37-7 50 0' stroke='%234d4d4d' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
-.tracked-filter.hat2::before {
-    content: "";
-    position: absolute;
-    left: 13%;
-    right: 13%;
-    bottom: 20%;
-    height: 18%;
-    background: #b01818;
-    border-radius: 999px;
+.tracked-filter.hat1 {
+    background-image: url("data:image/svg+xml,%3Csvg width='220' height='140' viewBox='0 0 220 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='110' cy='104' rx='92' ry='18' fill='%230b0b0b'/%3E%3Cpath d='M66 35c11-26 75-28 88 0l12 65H54l12-65z' fill='%23151515'/%3E%3Cpath d='M58 82h106v21H58z' fill='%23424242'/%3E%3Cpath d='M72 32c19-12 58-12 77 0' stroke='%23666666' stroke-width='10' stroke-linecap='round' opacity='.5'/%3E%3C/svg%3E");
 }
 
-.tracked-filter.hat2::after {
-    content: "";
-    position: absolute;
-    left: 24%;
-    top: 9%;
-    width: 52%;
-    height: 50%;
-    background:
-        radial-gradient(circle at 54% 40%, #fff 0 8%, transparent 9%),
-        linear-gradient(180deg, #ed1c24 0%, #a60008 100%);
-    border-radius: 45% 45% 16% 16%;
+.tracked-filter.hat2 {
+    background-image: url("data:image/svg+xml,%3Csvg width='230' height='145' viewBox='0 0 230 145' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='115' cy='102' rx='90' ry='20' fill='%23b20f18'/%3E%3Cpath d='M56 100c7-50 35-76 78-72 36 3 57 29 63 72H56z' fill='%23ed1c24'/%3E%3Cpath d='M62 92c29 12 89 12 128 0' stroke='%23890008' stroke-width='15' stroke-linecap='round'/%3E%3Ccircle cx='128' cy='64' r='25' fill='%23fff'/%3E%3Cpath d='M128 43l7 14 15 2-11 11 3 15-14-7-14 7 3-15-11-11 15-2 7-14z' fill='%23d21720'/%3E%3C/svg%3E");
 }
 
 .disguise {
